@@ -1,0 +1,2756 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spore Explorer – Englisch, Pilze & Länder der Welt</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Cozy Cottagecore Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FAF6EE',
+            parchment: '#F3EBDC',
+            moss: '#4A7C59',
+            mossDark: '#365E42',
+            sage: '#8DA97C',
+            sageLight: '#E8F0E2',
+            toadstool: '#D95D48',
+            toadstoolDark: '#B84633',
+            honey: '#E6A832',
+            honeyLight: '#FDF3D7',
+            bark: '#2D3A30',
+            barkSoft: '#596B5E',
+            berry: '#7A5B8C'
+          },
+          fontFamily: {
+            display: ['Fredoka', 'sans-serif'],
+            body: ['Nunito', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* =========================================
+       COZY WOODLAND & COTTAGECORE CUSTOM STYLES
+       ========================================= */
+    :root {
+      --bg-cream: #FAF6EE;
+      --ink-bark: #2D3A30;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(141, 169, 124, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 88% 12%, rgba(230, 168, 50, 0.12) 0%, transparent 35%),
+        radial-gradient(circle at 80% 85%, rgba(217, 93, 72, 0.08) 0%, transparent 40%);
+      color: var(--ink-bark);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Floating Woodland Spores Background */
+    #spore-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .spore-particle {
+      position: absolute;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(230, 168, 50, 0.55) 0%, rgba(141, 169, 124, 0.2) 70%, transparent 100%);
+      animation: floatSpore linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatSpore {
+      0% {
+        transform: translateY(105vh) translateX(0px) scale(0.7);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.7;
+      }
+      85% {
+        opacity: 0.55;
+      }
+      100% {
+        transform: translateY(-10vh) translateX(35px) scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    /* Cozy Tactile Pill Buttons */
+    .btn-cozy {
+      transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.15s ease;
+    }
+    .btn-cozy:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+    .btn-cozy:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn-moss {
+      background: linear-gradient(180deg, #568C66 0%, #457554 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 0 #31563C, 0 8px 16px rgba(74, 124, 89, 0.22);
+    }
+    .btn-moss:active:not(:disabled) {
+      box-shadow: 0 2px 0 #31563C;
+    }
+
+    .btn-toadstool {
+      background: linear-gradient(180deg, #E26B56 0%, #CC513D 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 0 #9F3A2A, 0 8px 16px rgba(217, 93, 72, 0.22);
+    }
+    .btn-toadstool:active:not(:disabled) {
+      box-shadow: 0 2px 0 #9F3A2A;
+    }
+
+    .btn-honey {
+      background: linear-gradient(180deg, #F0B849 0%, #DC9B24 100%);
+      color: #3D2806;
+      box-shadow: 0 4px 0 #B17914, 0 8px 16px rgba(230, 168, 50, 0.25);
+    }
+    .btn-honey:active:not(:disabled) {
+      box-shadow: 0 2px 0 #B17914;
+    }
+
+    .btn-parchment {
+      background: #FFFDF9;
+      color: #2D3A30;
+      border: 2px solid #DFD4BF;
+      box-shadow: 0 3px 0 #D8CBB3;
+    }
+    .btn-parchment:hover:not(:disabled) {
+      background: #F9F4E8;
+      border-color: #8DA97C;
+    }
+
+    /* Cozy Parchment Card */
+    .card-botanical {
+      background: #FFFDF9;
+      border: 2px solid #E5DAC6;
+      box-shadow: 0 8px 24px rgba(45, 58, 48, 0.06), 0 2px 0 #DFD2BB;
+      border-radius: 1.5rem;
+    }
+
+    /* Postcard Striped Border */
+    .postcard-frame {
+      background: repeating-linear-gradient(
+        135deg,
+        #D95D48 0px,
+        #D95D48 10px,
+        #FFFDF9 10px,
+        #FFFDF9 18px,
+        #4A7C59 18px,
+        #4A7C59 28px,
+        #FFFDF9 28px,
+        #FFFDF9 36px
+      );
+      padding: 5px;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 20px rgba(45, 58, 48, 0.08);
+    }
+
+    /* Botanical Skeleton Shimmer */
+    .photo-skeleton {
+      background: linear-gradient(90deg, #ECE5D5 25%, #F7F2E6 50%, #ECE5D5 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite linear;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Mascot Gentle Bounce */
+    @keyframes pipBounce {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(1.5deg); }
+    }
+    .pip-float {
+      animation: pipBounce 3.2s ease-in-out infinite;
+    }
+
+    /* Level Path Node Glow */
+    @keyframes currentPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(217, 93, 72, 0.45); }
+      50% { box-shadow: 0 0 0 12px rgba(217, 93, 72, 0); }
+    }
+    .node-current {
+      animation: currentPulse 2s infinite;
+    }
+
+    /* Pop-in animation */
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.95) translateY(8px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-pop {
+      animation: popIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Passport Stamp Effect */
+    .passport-stamp {
+      border: 2.5px dashed rgba(74, 124, 89, 0.45);
+      background-image: radial-gradient(circle at top right, rgba(230, 168, 50, 0.09), transparent 60%);
+    }
+
+    /* Confetti Layer */
+    #confetti-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      overflow: hidden;
+    }
+    .confetti-piece {
+      position: absolute;
+      top: -20px;
+      animation: confettiFall 2.4s cubic-bezier(0.2, 0.6, 0.4, 1) forwards;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(105vh) rotate(520deg) scale(0.7); opacity: 0; }
+    }
+
+    /* Hide scrollbar cleanly for chapter strip */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="antialiased selection:bg-sageLight selection:text-bark">
+  <!-- Floating Spore Background -->
+  <div id="spore-bg" aria-hidden="true"></div>
+  <!-- Confetti Overlay -->
+  <div id="confetti-container" aria-hidden="true"></div>
+
+  <!-- Main App Wrapper -->
+  <div class="relative z-10 min-h-screen flex flex-col">
+    <!-- ==================== HEADER ==================== -->
+    <header class="sticky top-0 z-30 bg-cream/95 backdrop-blur-md border-b-2 border-[#E5DAC6] shadow-sm">
+      <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+        <!-- Brand & Mascot Mini -->
+        <button onclick="switchTab('map')" class="flex items-center gap-2.5 text-left group focus:outline-none">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-sageLight border-2 border-sage flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+            <!-- Mini Pip SVG -->
+            <svg viewBox="0 0 64 64" class="w-9 h-9" aria-hidden="true">
+              <ellipse cx="32" cy="54" rx="14" ry="5" fill="#C9D8BD"/>
+              <path d="M22 34 C22 48, 22 53, 32 53 C42 53, 42 48, 42 34 Z" fill="#FFF7E6" stroke="#2D3A30" stroke-width="2.6"/>
+              <path d="M10 34 C10 15, 22 9, 32 9 C42 9, 54 15, 54 34 C46 37, 18 37, 10 34 Z" fill="#D95D48" stroke="#2D3A30" stroke-width="2.6"/>
+              <circle cx="23" cy="21" r="4" fill="#FFF7E6"/>
+              <circle cx="38" cy="17" r="3.2" fill="#FFF7E6"/>
+              <circle cx="44" cy="26" r="2.8" fill="#FFF7E6"/>
+              <circle cx="17" cy="28" r="2.2" fill="#FFF7E6"/>
+              <circle cx="27.5" cy="43" r="2.2" fill="#2D3A30"/>
+              <circle cx="36.5" cy="43" r="2.2" fill="#2D3A30"/>
+              <circle cx="24" cy="45.5" r="2" fill="#F2A496" opacity="0.8"/>
+              <circle cx="40" cy="45.5" r="2" fill="#F2A496" opacity="0.8"/>
+              <path d="M29.5 46 Q32 48.5 34.5 46" fill="none" stroke="#2D3A30" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="font-display text-xl sm:text-2xl font-bold text-bark leading-tight tracking-tight">
+              Spore <span class="text-toadstool">Explorer</span>
+            </h1>
+            <p class="text-[11px] sm:text-xs font-semibold text-barkSoft -mt-0.5">
+              Englisch · 100 Pilze · 100 Länder
+            </p>
+          </div>
+        </button>
+
+        <!-- Stats & Quick Controls -->
+        <div class="flex items-center gap-1.5 sm:gap-2.5">
+          <div class="flex items-center gap-1 bg-honeyLight border border-honey/50 px-2.5 py-1 rounded-full text-xs sm:text-sm font-bold text-[#7A5207]" title="Gesammelte Sporen-Sterne">
+            <span>⭐</span><span id="stat-stars">0</span><span class="hidden sm:inline text-[#9A7120] font-semibold">/300</span>
+          </div>
+          <div class="flex items-center gap-1 bg-sageLight border border-sage/50 px-2.5 py-1 rounded-full text-xs sm:text-sm font-bold text-mossDark" title="Abgeschlossene Level">
+            <span>🍄</span><span id="stat-completed">0</span><span class="hidden sm:inline font-semibold">/100</span>
+          </div>
+          <div class="hidden md:flex items-center gap-1 bg-[#FDECE8] border border-toadstool/35 px-2.5 py-1 rounded-full text-xs sm:text-sm font-bold text-toadstoolDark" title="Aktuelle Serie">
+            <span>🔥</span><span id="stat-streak">0</span>
+          </div>
+
+          <!-- Explorer Mode Toggle -->
+          <button id="btn-explorer-toggle" onclick="toggleExplorerMode()" class="btn-cozy flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold border-2 transition-colors" title="Alle 100 Level sofort freischalten oder der Reihe nach spielen">
+            <span id="explorer-icon">🔒</span>
+            <span class="hidden lg:inline" id="explorer-label">Entdecker-Modus</span>
+          </button>
+
+          <!-- Audio Mute Toggle -->
+          <button id="btn-mute" onclick="toggleMute()" class="btn-cozy w-9 h-9 rounded-full bg-white border-2 border-[#DFD4BF] flex items-center justify-center text-base hover:border-sage" title="Ton an/aus" aria-label="Ton umschalten">
+            🔊
+          </button>
+
+          <!-- Settings Button -->
+          <button onclick="openSettingsModal()" class="btn-cozy w-9 h-9 rounded-full bg-white border-2 border-[#DFD4BF] flex items-center justify-center text-base hover:border-sage" title="Einstellungen" aria-label="Einstellungen öffnen">
+            ⚙️
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tab Bar -->
+      <nav class="max-w-6xl mx-auto px-3 sm:px-6 pb-2.5 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar" aria-label="Hauptnavigation">
+        <button data-tab="map" onclick="switchTab('map')" class="nav-tab btn-cozy flex-shrink-0 flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all">
+          <span>🗺️</span><span>Weltkarte</span>
+        </button>
+        <button data-tab="herbarium" onclick="switchTab('herbarium')" class="nav-tab btn-cozy flex-shrink-0 flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all">
+          <span>🍄</span><span>Pilz-Herbarium</span>
+        </button>
+        <button data-tab="passport" onclick="switchTab('passport')" class="nav-tab btn-cozy flex-shrink-0 flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all">
+          <span>🌍</span><span>Weltpass</span>
+        </button>
+        <button data-tab="vocab" onclick="switchTab('vocab')" class="nav-tab btn-cozy flex-shrink-0 flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all">
+          <span>📚</span><span>Vokabelbuch & Training</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-5 sm:py-7">
+      <!-- TAB 1: WELTKARTE (100 LEVELS) -->
+      <section id="view-map" class="space-y-6 animate-pop">
+        <!-- Hero Welcome Banner with Pip -->
+        <div class="card-botanical p-4 sm:p-6 bg-gradient-to-br from-[#FFFDF9] via-[#FAF4E6] to-[#EDF4E7] relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <div class="flex-shrink-0 pip-float" id="map-pip-container"></div>
+            <div class="flex-1 text-center sm:text-left">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sageLight text-mossDark text-xs font-extrabold mb-2">
+                <span>🌿</span><span id="pip-greeting-badge">Hallo Entdecker!</span>
+              </div>
+              <h2 class="font-display text-2xl sm:text-3xl font-bold text-bark mb-1.5" id="pip-map-title">
+                Bereit für deine Reise durch 100 Pilz-Welten?
+              </h2>
+              <p class="text-sm sm:text-base text-barkSoft font-semibold max-w-2xl" id="pip-map-subtitle">
+                In jedem Level lernst du eine neue englische Vokabel (ab A2), entdeckst eine echte Pilzart mit Foto und sammelst einen neuen Länder-Stempel mit Hauptstadt!
+              </p>
+              <div class="mt-4 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                <button onclick="playNextLevel()" class="btn-cozy btn-moss px-5 py-2.5 rounded-full font-display font-semibold text-sm sm:text-base flex items-center gap-2">
+                  <span>🎒</span><span id="btn-next-level-text">Level 1 starten</span>
+                </button>
+                <button onclick="toggleExplorerMode()" class="btn-cozy btn-parchment px-4 py-2.5 rounded-full font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                  <span id="map-explorer-hint-icon">🔓</span>
+                  <span id="map-explorer-hint-text">Alle 100 Level freischalten</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter Selector (10 Chapters) -->
+        <div>
+          <div class="flex items-center justify-between mb-2.5 px-1">
+            <h3 class="font-display text-lg sm:text-xl font-bold text-bark flex items-center gap-2">
+              <span>🧭</span><span>10 Reise-Kapitel</span>
+            </h3>
+            <span class="text-xs font-bold text-barkSoft bg-parchment px-3 py-1 rounded-full">
+              A2 → B2 Progression
+            </span>
+          </div>
+          <div id="chapter-tabs" class="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-2.5"></div>
+        </div>
+
+        <!-- Active Chapter Path -->
+        <div class="card-botanical p-4 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b-2 border-[#EFE6D5]">
+            <div>
+              <span id="active-chapter-badge" class="inline-block text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-honeyLight text-[#8A5D0A] mb-1"></span>
+              <h3 id="active-chapter-title" class="font-display text-xl sm:text-2xl font-bold text-bark"></h3>
+              <p id="active-chapter-desc" class="text-xs sm:text-sm text-barkSoft font-semibold"></p>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="bg-sageLight px-3 py-1.5 rounded-2xl text-xs sm:text-sm font-extrabold text-mossDark" id="active-chapter-progress">
+                0 / 10 Level
+              </div>
+            </div>
+          </div>
+
+          <!-- Winding 10-Level Grid -->
+          <div id="level-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3.5"></div>
+        </div>
+      </section>
+
+      <!-- TAB 2: PILZ-HERBARIUM -->
+      <section id="view-herbarium" class="hidden space-y-5 animate-pop">
+        <div class="card-botanical p-4 sm:p-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h2 class="font-display text-2xl sm:text-3xl font-bold text-bark flex items-center gap-2">
+                <span>🍄</span><span>Pilz-Herbarium</span>
+              </h2>
+              <p class="text-sm text-barkSoft font-semibold mt-0.5">
+                Entdeckte echte Pilzarten mit authentischen Naturfotografien (<span id="herbarium-count">0</span> / 100 sichtbar).
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <input id="herbarium-search" type="search" placeholder="Pilz suchen (DE, EN, Latein)..." oninput="renderHerbarium()" class="w-full sm:w-56 px-3.5 py-2 rounded-full bg-cream border-2 border-[#DFD4BF] text-sm font-semibold focus:outline-none focus:border-moss" />
+            </div>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="flex flex-wrap gap-2 mt-4" id="herbarium-filters">
+            <button onclick="setHerbariumFilter('Alle')" data-hfilter="Alle" class="hfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🌿 Alle</button>
+            <button onclick="setHerbariumFilter('Essbar')" data-hfilter="Essbar" class="hfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🥗 Essbar</button>
+            <button onclick="setHerbariumFilter('Giftig')" data-hfilter="Giftig" class="hfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">☠️ Giftig</button>
+            <button onclick="setHerbariumFilter('Heil- & Vitalpilz')" data-hfilter="Heil- & Vitalpilz" class="hfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">✨ Heil- & Vitalpilz</button>
+            <button onclick="setHerbariumFilter('Ungenießbar / Besonderheit')" data-hfilter="Ungenießbar / Besonderheit" class="hfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🔮 Besonderheit</button>
+          </div>
+        </div>
+
+        <div id="herbarium-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- TAB 3: WELTPASS -->
+      <section id="view-passport" class="hidden space-y-5 animate-pop">
+        <div class="card-botanical p-4 sm:p-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h2 class="font-display text-2xl sm:text-3xl font-bold text-bark flex items-center gap-2">
+                <span>🌍</span><span>Dein Weltpass</span>
+              </h2>
+              <p class="text-sm text-barkSoft font-semibold mt-0.5">
+                Sammle Reisestempel aus 100 Ländern mit Hauptstädten und berühmten Fakten (<span id="passport-count">0</span> / 100 sichtbar).
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <input id="passport-search" type="search" placeholder="Land oder Hauptstadt suchen..." oninput="renderPassport()" class="w-full sm:w-56 px-3.5 py-2 rounded-full bg-cream border-2 border-[#DFD4BF] text-sm font-semibold focus:outline-none focus:border-moss" />
+              <select id="passport-chapter-filter" onchange="renderPassport()" class="px-3.5 py-2 rounded-full bg-cream border-2 border-[#DFD4BF] text-xs sm:text-sm font-bold text-bark focus:outline-none focus:border-moss">
+                <option value="all">Alle 10 Kapitel</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="passport-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- TAB 4: VOKABELBUCH & ENDLOS-TRAINING -->
+      <section id="view-vocab" class="hidden space-y-5 animate-pop">
+        <div class="card-botanical p-4 sm:p-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h2 class="font-display text-2xl sm:text-3xl font-bold text-bark flex items-center gap-2">
+                <span>📚</span><span>Englisch-Vokabelbuch</span>
+              </h2>
+              <p class="text-sm text-barkSoft font-semibold mt-0.5">
+                Höre dir jede Vokabel an oder starte das Endlos-Mix-Training (<span id="vocab-count">0</span> / 100 sichtbar).
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="openTrainerModal()" class="btn-cozy btn-honey px-4 py-2 rounded-full font-display font-bold text-sm flex items-center gap-1.5">
+                <span>⚡</span><span>Endlos-Mix Training</span>
+              </button>
+              <input id="vocab-search" type="search" placeholder="Vokabel suchen..." oninput="renderVocab()" class="w-full sm:w-48 px-3.5 py-2 rounded-full bg-cream border-2 border-[#DFD4BF] text-sm font-semibold focus:outline-none focus:border-moss" />
+            </div>
+          </div>
+
+          <!-- CEFR Filters -->
+          <div class="flex flex-wrap gap-2 mt-4" id="vocab-filters">
+            <button onclick="setVocabFilter('Alle')" data-vfilter="Alle" class="vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">Alle Stufen</button>
+            <button onclick="setVocabFilter('A2')" data-vfilter="A2" class="vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🌱 A2</button>
+            <button onclick="setVocabFilter('A2+')" data-vfilter="A2+" class="vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🌿 A2+</button>
+            <button onclick="setVocabFilter('B1')" data-vfilter="B1" class="vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🌲 B1</button>
+            <button onclick="setVocabFilter('B1+')" data-vfilter="B1+" class="vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🍄 B1+</button>
+            <button onclick="setVocabFilter('B2')" data-vfilter="B2" class="vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 transition-all">🌟 B2</button>
+          </div>
+        </div>
+
+        <div id="vocab-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+      </section>
+
+      <!-- LEVEL PLAY SCREEN (DISCOVERY + QUIZ + CELEBRATION) -->
+      <section id="view-level" class="hidden space-y-5 animate-pop"></section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-4 px-4 text-xs font-semibold text-barkSoft border-t border-[#E5DAC6]/70 mt-6">
+      🍄 <strong>Spore Explorer</strong> · Spielerisch Englisch (A2–B2), 100 echte Pilzarten & 100 Länder entdecken · Echte Pilzfotos via Wikipedia & Wikimedia Commons (Hinweis: Kein Ersatz für eine Pilzsachverständigen-Prüfung zum Verzehr!)
+    </footer>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+  <!-- Mushroom Detail Modal -->
+  <div id="modal-mushroom" class="hidden fixed inset-0 z-50 bg-bark/55 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5" onclick="if(event.target===this) closeMushroomModal()">
+    <div class="card-botanical max-w-lg w-full max-h-[90vh] overflow-y-auto p-5 sm:p-6 animate-pop relative">
+      <button onclick="closeMushroomModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-parchment hover:bg-sageLight flex items-center justify-center font-bold text-bark">✕</button>
+      <div id="modal-mushroom-body"></div>
+    </div>
+  </div>
+
+  <!-- Endless Trainer Modal -->
+  <div id="modal-trainer" class="hidden fixed inset-0 z-50 bg-bark/55 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5" onclick="if(event.target===this) closeTrainerModal()">
+    <div class="card-botanical max-w-xl w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 animate-pop relative">
+      <button onclick="closeTrainerModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-parchment hover:bg-sageLight flex items-center justify-center font-bold text-bark">✕</button>
+      <div id="modal-trainer-body"></div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-bark/55 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5" onclick="if(event.target===this) closeSettingsModal()">
+    <div class="card-botanical max-w-md w-full p-5 sm:p-6 animate-pop relative space-y-4">
+      <button onclick="closeSettingsModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-parchment hover:bg-sageLight flex items-center justify-center font-bold text-bark">✕</button>
+      <h3 class="font-display text-2xl font-bold text-bark flex items-center gap-2"><span>⚙️</span><span>Einstellungen</span></h3>
+
+      <div class="space-y-3">
+        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-cream border border-[#E5DAC6]">
+          <div>
+            <p class="font-bold text-sm text-bark">🔓 Entdecker-Modus</p>
+            <p class="text-xs text-barkSoft">Alle 100 Level, Pilze & Länder sofort ansehen und spielen.</p>
+          </div>
+          <button onclick="toggleExplorerMode()" id="settings-explorer-btn" class="px-3.5 py-1.5 rounded-full text-xs font-extrabold"></button>
+        </div>
+
+        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-cream border border-[#E5DAC6]">
+          <div>
+            <p class="font-bold text-sm text-bark">🔊 Soundeffekte</p>
+            <p class="text-xs text-barkSoft">Sanfte Wald-Klänge bei richtigen Antworten.</p>
+          </div>
+          <button onclick="toggleMute()" id="settings-mute-btn" class="px-3.5 py-1.5 rounded-full text-xs font-extrabold"></button>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-[#FDF0ED] border border-toadstool/30 space-y-2.5">
+          <p class="font-bold text-sm text-toadstoolDark">🗑️ Fortschritt zurücksetzen</p>
+          <p class="text-xs text-barkSoft">Setzt deine Sterne, Serie und freigeschalteten Level wieder auf Level 1 zurück.</p>
+          <div id="reset-confirm-area">
+            <button onclick="showResetConfirm()" class="btn-cozy px-4 py-2 rounded-full bg-white border-2 border-toadstool text-toadstoolDark text-xs font-extrabold hover:bg-toadstool hover:text-white">
+              Fortschritt zurücksetzen
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-2 text-right">
+        <button onclick="closeSettingsModal()" class="btn-cozy btn-moss px-5 py-2 rounded-full text-sm font-bold">Fertig</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-bark text-cream px-5 py-2.5 rounded-full shadow-xl text-sm font-bold flex items-center gap-2 animate-pop"></div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    /* =========================================================================
+       1. CHAPTER METADATA (10 THEMED CHAPTERS × 10 LEVELS = 100 LEVELS)
+       ========================================================================= */
+    const CHAPTERS = [
+      { id: 1, title: 'Zauberwald Europa', icon: '🌲', cefr: 'A2', desc: 'Sanfter Einstieg in Mitteleuropa mit klassischen Waldpilzen und Alltagsvokabeln.' },
+      { id: 2, title: 'Nordlichter & Küsten', icon: '🧭', cefr: 'A2', desc: 'Reise in den Norden Europas: Fjorde, Küsten, Naturwörter und nordische Pilze.' },
+      { id: 3, title: 'Alpen & Mittelmeer', icon: '☀️', cefr: 'A2', desc: 'Sonnige Küsten, antike Städte, Trüffel, Kaiserlinge und Reise-Englisch.' },
+      { id: 4, title: 'Seidenstraße & Orient', icon: '🕌', cefr: 'A2–A2+', desc: 'Zwischen Orient, Kaukasus und Wüstenstädten: Zeiten, Vergleiche & Alltag.' },
+      { id: 5, title: 'Fernost & Monsun', icon: '🏮', cefr: 'A2+–B1', desc: 'Berühmte Vital- und Speisepilze Asiens treffen auf spannende Kulturen.' },
+      { id: 6, title: 'Tempel & Gewürzinseln', icon: '🌺', cefr: 'B1', desc: 'Tropische Wälder, leuchtende Pilze und nützliche B1-Ausdrücke für unterwegs.' },
+      { id: 7, title: 'Savannen & Oasen Afrikas', icon: '🦁', cefr: 'B1', desc: 'Weite Landschaften Afrikas, faszinierende Pilzformen und klare Formulierungen.' },
+      { id: 8, title: 'Regenwald & Anden', icon: '🦜', cefr: 'B1+', desc: 'Bunte Saftlinge und Becherlinge in Süd- und Mittelamerika auf B1+-Niveau.' },
+      { id: 9, title: 'Prärien & Karibik', icon: '🍁', cefr: 'B1+–B2', desc: 'Nordamerika & Karibik: Phrasal Verbs, Redewendungen und prächtige Pilze.' },
+      { id: 10, title: 'Südsee & Schätze der Welt', icon: '🏝️', cefr: 'B2', desc: 'Seltene Märchenpilze, Südsee-Inseln und ausdrucksstarkes B2-Englisch!' }
+    ];
+
+    /* =========================================================================
+       2. COMPLETE 100-LEVEL DATASET (100 UNIQUE MUSHROOMS, COUNTRIES & ENGLISH)
+       Compact tuple builder keeps the single file crisp, clean & 100% populated.
+       Format:
+       [id, chapter,
+        mDe, mEn, mLatin, mCat, mFact,
+        cDe, cEn, cFlag, cCap, cFact,
+        cefr, enWord, deWord, sentence, blankSentence, answer, tip]
+       Category codes: 'E'=Essbar, 'G'=Giftig, 'H'=Heil- & Vitalpilz, 'B'=Ungenießbar / Besonderheit
+       ========================================================================= */
+    const CAT_MAP = {
+      E: 'Essbar',
+      G: 'Giftig',
+      H: 'Heil- & Vitalpilz',
+      B: 'Ungenießbar / Besonderheit'
+    };
+
+    const RAW_LEVELS = [
+      // ==================== KAPITEL 1: ZAUBERWALD EUROPA (1-10, A2) ====================
+      [1, 1,
+        'Fliegenpilz', 'Fly Agaric', 'Amanita muscaria', 'G', 'Sein roter Hut mit weißen Punkten gilt weltweit als Glückssymbol, doch roh und zubereitet ist er giftig.',
+        'Deutschland', 'Germany', '🇩🇪', 'Berlin', 'Berühmt für das Brandenburger Tor, Märchenschlösser wie Neuschwanstein und über 300 Brotsorten.',
+        'A2', 'backpack', 'Rucksack', 'I always pack a small snack in my backpack.', 'I always pack a small snack in my _____.', 'backpack', 'Zusammengesetztes Wort: back (Rücken) + pack (Pack) = Rucksack.'
+      ],
+      [2, 1,
+        'Steinpilz', 'Penny Bun', 'Boletus edulis', 'E', 'Der „König der Pilze“ hat einen nussigen Geschmack und wächst gern unter Fichten und Buchen.',
+        'Frankreich', 'France', '🇫🇷', 'Paris', 'Bekannt für den Eiffelturm, den Louvre, frische Croissants und Lavendelfelder in der Provence.',
+        'A2', 'delicious', 'köstlich / lecker', 'This warm mushroom soup tastes really delicious!', 'This warm mushroom soup tastes really _____!', 'delicious', 'Aussprache: di-LI-schös. Stärker und feiner als einfach nur „good“.'
+      ],
+      [3, 1,
+        'Echter Pfifferling', 'Golden Chanterelle', 'Cantharellus cibarius', 'E', 'Er leuchtet dottergelb im Moos und duftet ganz zart nach Aprikosen.',
+        'Österreich', 'Austria', '🇦🇹', 'Wien', 'Berühmt für die Alpen, klassische Musik von Mozart und gemütliche Wiener Kaffeehäuser.',
+        'A2', 'forest path', 'Waldpfad', 'We walked quietly along the narrow forest path.', 'We walked quietly along the narrow _____.', 'forest path', '„Forest“ ist ein größerer Wald, „path“ ein schmaler Pfad.'
+      ],
+      [4, 1,
+        'Schopftintling', 'Shaggy Ink Cap', 'Coprinus comatus', 'E', 'Jung ist er schneeweiß und essbar – im Alter zerfließt sein Hut tatsächlich zu schwarzer Tinte!',
+        'Schweiz', 'Switzerland', '🇨🇭', 'Bern', 'Bekannt für das Matterhorn, präzise Uhren, Schokolade und vier Landessprachen.',
+        'A2', 'umbrella', 'Regenschirm', 'Take your umbrella because the sky looks grey.', 'Take your _____ because the sky looks grey.', 'umbrella', 'Vor „umbrella“ steht „an“ (an umbrella), da es mit einem Vokallaut beginnt.'
+      ],
+      [5, 1,
+        'Parasol', 'Parasol Mushroom', 'Macrolepiota procera', 'E', 'Sein geschuppter Hut wird bis zu 30 cm breit und erinnert an einen offenen Sonnenschirm.',
+        'Niederlande', 'Netherlands', '🇳🇱', 'Amsterdam', 'Berühmt für bunte Tulpenfelder, Windmühlen, Grachten und Millionen Fahrräder.',
+        'A2', 'bicycle', 'Fahrrad', 'Many people ride a bicycle to work every morning.', 'Many people ride a _____ to work every morning.', 'bicycle', 'Im Alltag sagt man oft kurz „bike“ statt „bicycle“.'
+      ],
+      [6, 1,
+        'Maronen-Röhrling', 'Bay Bolete', 'Imleria badia', 'E', 'Drückt man auf seine gelben Röhren, verfärben sie sich wie durch Zauberei sanft blaugrün.',
+        'Belgien', 'Belgium', '🇧🇪', 'Brüssel', 'Bekannt für das Atomium, knusprige Waffeln, Pralinen und berühmte Comics wie Tim und Struppi.',
+        'A2', 'quiet', 'ruhig / leise', 'The early morning in the woods is very quiet.', 'The early morning in the woods is very _____.', 'quiet', 'Nicht verwechseln mit „quite“ (ziemlich)! Quiet = leise/ruhig.'
+      ],
+      [7, 1,
+        'Krause Glucke', 'Cauliflower Fungus', 'Sparassis crispa', 'E', 'Sie wächst am Fuß alter Kiefern und sieht aus wie ein riesiger, krauser Naturschwamm.',
+        'Luxemburg', 'Luxembourg', '🇱🇺', 'Luxemburg', 'Ein kleines Großherzogtum mit märchenhaften Burgen und kostenlosem öffentlichen Nahverkehr.',
+        'A2', 'bridge', 'Brücke', 'We crossed an old stone bridge over the river.', 'We crossed an old stone _____ over the river.', 'bridge', '„Cross a bridge“ bedeutet „eine Brücke überqueren“.'
+      ],
+      [8, 1,
+        'Zucht-Champignon', 'Button Mushroom', 'Agaricus bisporus', 'E', 'Der weltweit am häufigsten angebaute Speisepilz – braun und groß heißt er oft Portobello.',
+        'Polen', 'Poland', '🇵🇱', 'Warschau', 'Bekannt für die mittelalterliche Altstadt von Krakau, die Hohe Tatra und leckere Pierogi.',
+        'A2', 'fresh', 'frisch', 'I bought fresh vegetables and mushrooms at the market.', 'I bought _____ vegetables and mushrooms at the market.', 'fresh', 'Steht wie fast alle Adjektive im Englischen immer direkt vor dem Nomen.'
+      ],
+      [9, 1,
+        'Grüner Knollenblätterpilz', 'Death Cap', 'Amanita phalloides', 'G', 'Einer der gefährlichsten Giftpilze überhaupt – er hat eine charakteristische Scheide (Volva) am Stielende.',
+        'Tschechien', 'Czechia', '🇨🇿', 'Prag', 'Die „Goldene Stadt“ an der Moldau ist berühmt für die Karlsbrücke und hunderte Burgen.',
+        'A2', 'careful', 'vorsichtig', 'Please be very careful when you explore nature.', 'Please be very _____ when you explore nature.', 'careful', 'Die Endung „-ful“ (mit einem L!) bedeutet „voll von“ – care + ful.'
+      ],
+      [10, 1,
+        'Herbsttrompete', 'Black Trumpet', 'Craterellus cornucopioides', 'E', 'Trotz ihres dunklen, trompetenförmigen Aussehens zählt sie zu den feinsten Würzpilzen Europas.',
+        'Ungarn', 'Hungary', '🇭🇺', 'Budapest', 'Berühmt für das prachtvolle Parlamentsgebäude an der Donau, Thermalbäder und Paprika.',
+        'A2', 'autumn', 'Herbst', 'In autumn, the leaves turn golden and red.', 'In _____, the leaves turn golden and red.', 'autumn', 'Britisches Englisch: „autumn“ (das n am Ende ist stumm). US-Englisch: „fall“.'
+      ],
+
+      // ==================== KAPITEL 2: NORDLICHTER & KÜSTEN (11-20, A2) ====================
+      [11, 2,
+        'Violetter Lacktrichterling', 'Amethyst Deceiver', 'Laccaria amethystina', 'E', 'Bei feuchtem Wetter strahlt er leuchtend lila, beim Trocknen verblasst er fast zu Weiß.',
+        'Vereinigtes Königreich', 'United Kingdom', '🇬🇧', 'London', 'Bekannt für Big Ben, rote Doppeldeckerbusse, Stonehenge und die schottischen Highlands.',
+        'A2', 'weather', 'Wetter', 'The weather changes quickly near the coast.', 'The _____ changes quickly near the coast.', 'weather', '„Weather“ ist unzählbar – also niemals „a weather“ sagen!'
+      ],
+      [12, 2,
+        'Riesenbovist', 'Giant Puffball', 'Calvatia gigantea', 'E', 'Dieser riesige weiße Pilz kann so groß wie ein Fußball werden und enthält Billionen Sporen.',
+        'Irland', 'Ireland', '🇮🇪', 'Dublin', 'Die „Grüne Insel“ ist berühmt für die steilen Cliffs of Moher, keltische Musik und Schafe.',
+        'A2', 'green', 'grün', 'Ireland is famous for its bright green hills.', 'Ireland is famous for its bright _____ hills.', 'green', '„Famous for“ bedeutet „berühmt für“ – merke dir die Präposition „for“!'
+      ],
+      [13, 2,
+        'Birkenpilz', 'Birch Bolete', 'Leccinum scabrum', 'E', 'Er lebt in enger Freundschaft ausschließlich mit Birken und trägt dunkle Schüppchen am Stiel.',
+        'Norwegen', 'Norway', '🇳🇴', 'Oslo', 'Berühmt für tiefe Fjorde, Polarlichter im Winter und die Mitternachtssonne im Norden.',
+        'A2', 'mountain', 'Berg', 'From the top of the mountain, we saw the fjord.', 'From the top of the _____, we saw the fjord.', 'mountain', 'Im Plural: „mountains“ (Gebirge / Berge).'
+      ],
+      [14, 2,
+        'Birken-Rotkappe', 'Orange Birch Bolete', 'Leccinum versipelle', 'E', 'Mit ihrem leuchtend orangeroten Hut sieht sie aus, als trüge sie ein kleines Märchenkäppchen.',
+        'Schweden', 'Sweden', '🇸🇪', 'Stockholm', 'Bekannt für rote Holzhäuser, tausende Schäreninseln, Elche und die gemütliche „Fika“-Kaffeepause.',
+        'A2', 'wooden', 'hölzern / aus Holz', 'We stayed in a cozy wooden cabin by the lake.', 'We stayed in a cozy _____ cabin by the lake.', 'wooden', 'Aus „wood“ (Holz) wird mit „-en“ das Adjektiv „wooden“ (aus Holz).'
+      ],
+      [15, 2,
+        'Butterpilz', 'Slippery Jack', 'Suillus luteus', 'E', 'Bei Regen glänzt seine braune Huthaut schmierig wie Butter – daher sein lustiger Name!',
+        'Finnland', 'Finland', '🇫🇮', 'Helsinki', 'Das „Land der tausend Seen“ ist berühmt für Saunakultur, Rentiere und das Weihnachtsmanndorf in Lappland.',
+        'A2', 'lake', 'See', 'The water in the forest lake is crystal clear.', 'The water in the forest _____ is crystal clear.', 'lake', '„Lake“ ist der Binnensee, „sea“ dagegen das Meer!'
+      ],
+      [16, 2,
+        'Semmel-Stoppelpilz', 'Hedgehog Mushroom', 'Hydnum repandum', 'E', 'Statt Lamellen trägt er unter dem Hut winzige, weiche Stacheln wie ein kleiner Igel.',
+        'Dänemark', 'Denmark', '🇩🇰', 'Kopenhagen', 'Berühmt für die Kleine Meerjungfrau, Lego, bunte Häfen und das Lebensgefühl „Hygge“.',
+        'A2', 'cozy', 'gemütlich', 'It feels warm and cozy inside the little café.', 'It feels warm and _____ inside the little café.', 'cozy', 'US: „cozy“, UK: „cosy“ – beide Schreibweisen sind korrekt!'
+      ],
+      [17, 2,
+        'Speise-Morchel', 'Yellow Morel', 'Morchella esculenta', 'E', 'Ihr wabenförmiger Hut erscheint schon im Frühling – sie darf aber niemals roh gegessen werden.',
+        'Island', 'Iceland', '🇮🇸', 'Reykjavík', 'Insel aus Feuer und Eis mit heißen Geysiren, Gletschern, Wasserfällen und Vulkanen.',
+        'A2', 'spring', 'Frühling', 'In spring, flowers bloom and days grow longer.', 'In _____, flowers bloom and days grow longer.', 'spring', '„Spring“ bedeutet sowohl Frühling als auch Quelle (z. B. hot spring = heiße Quelle).'
+      ],
+      [18, 2,
+        'Schwefelporling', 'Chicken of the Woods', 'Laetiporus sulphureus', 'E', 'Leuchtet schwefelgelb an alten Bäumen und schmeckt jung tatsächlich leicht nach Hühnchen.',
+        'Estland', 'Estonia', '🇪🇪', 'Tallinn', 'Berühmt für seine märchenhafte mittelalterliche Altstadt, digitale Innovationen und dichte Wälder.',
+        'A2', 'bright', 'hell / leuchtend', 'The yellow mushroom has a very bright color.', 'The yellow mushroom has a very _____ color.', 'bright', 'Kann für Farben (leuchtend), Licht (hell) oder sogar kluge Köpfe benutzt werden.'
+      ],
+      [19, 2,
+        'Austern-Seitling', 'Oyster Mushroom', 'Pleurotus ostreatus', 'E', 'Er wächst büschelig an Laubbäumen sogar im Winter und kann winzige Fadenwürmer fangen!',
+        'Lettland', 'Latvia', '🇱🇻', 'Riga', 'Bekannt für prachtvolle Jugendstil-Häuser, weiße Ostseestrände und alte Gesangsfeste.',
+        'A2', 'winter', 'Winter', 'Some strong mushrooms even grow in winter.', 'Some strong mushrooms even grow in _____.', 'winter', 'Vor Jahreszeiten steht im Englischen meist „in“: in winter, in summer.'
+      ],
+      [20, 2,
+        'Zunderschwamm', 'Tinder Fungus', 'Fomes fomentarius', 'B', 'Schon Ötzi trug diesen harten Baumpilz bei sich, um damit Feuer zu machen und Glut zu transportieren.',
+        'Litauen', 'Lithuania', '🇱🇹', 'Vilnius', 'Berühmt für die Wasserburg Trakai, die Kurische Nehrung und goldgelben Ostsee-Bernstein.',
+        'A2', 'history', 'Geschichte', 'This old castle has a fascinating history.', 'This old castle has a fascinating _____.', 'history', '„History“ ist die Weltgeschichte; eine erzählte Geschichte heißt „story“.'
+      ],
+
+      // ==================== KAPITEL 3: ALPEN & MITTELMEER (21-30, A2) ====================
+      [21, 3,
+        'Kaiserling', 'Caesar\'s Mushroom', 'Amanita caesarea', 'E', 'Schon die römischen Kaiser liebten diesen leuchtend orangen Pilz, der in Südeuropa wächst.',
+        'Italien', 'Italy', '🇮🇹', 'Rom', 'Berühmt für das Kolosseum, Venedigs Kanäle, Pasta, Pizza und die Kunst der Renaissance.',
+        'A2', 'ancient', 'antik / uralt', 'We visited ancient ruins in the center of Rome.', 'We visited _____ ruins in the center of Rome.', 'ancient', 'Aussprache: ÄJN-schent. Viel älter als einfach nur „old“.'
+      ],
+      [22, 3,
+        'Périgord-Trüffel', 'Black Truffle', 'Tuber melanosporum', 'E', 'Er wächst unter der Erde an Eichenwurzeln und wird von trainierten Hunden erschnüffelt.',
+        'Spanien', 'Spain', '🇪🇸', 'Madrid', 'Bekannt für die Sagrada Família in Barcelona, Flamenco, Paella und sonnige Inseln.',
+        'A2', 'underground', 'unterirdisch', 'Truffles grow underground near oak tree roots.', 'Truffles grow _____ near oak tree roots.', 'underground', 'In London nennt man übrigens auch die U-Bahn „the Underground“!'
+      ],
+      [23, 3,
+        'Leuchtender Ölbaumpilz', 'Jack-o\'-Lantern Mushroom', 'Omphalotus olearius', 'G', 'Seine Lamellen können nachts schwach grünlich leuchten – er ist aber giftig und oft mit Pfifferlingen verwechselt.',
+        'Portugal', 'Portugal', '🇵🇹', 'Lissabon', 'Berühmt für gelbe Straßenbahnen, blaue Azulejo-Kacheln, Fado-Musik und Pastéis de Nata.',
+        'A2', 'sunset', 'Sonnenuntergang', 'We watched the orange sunset over the ocean.', 'We watched the orange _____ over the ocean.', 'sunset', 'Gegenteil: „sunrise“ (Sonnenaufgang).'
+      ],
+      [24, 3,
+        'Edel-Reizker', 'Saffron Milk Cap', 'Lactarius deliciosus', 'E', 'Verletzt man seinen Hut, tritt leuchtend karottenorange Milch aus – ein beliebter Speisepilz am Mittelmeer.',
+        'Griechenland', 'Greece', '🇬🇷', 'Athen', 'Wiege der Demokratie und Olympischen Spiele, berühmt für die Akropolis und weiß-blaue Inseln.',
+        'A2', 'island', 'Insel', 'We took a small ferry to a sunny island.', 'We took a small ferry to a sunny _____.', 'island', 'Achtung Aussprache: Das „s“ ist völlig stumm! Man spricht es „AI-länd“.'
+      ],
+      [25, 3,
+        'Roter Gitterling', 'Latticed Stinkhorn', 'Clathrus ruber', 'B', 'Sieht aus wie ein leuchtend roter Käfig oder Korb und lockt mit kräftigem Duft Fliegen an.',
+        'Kroatien', 'Croatia', '🇭🇷', 'Zagreb', 'Berühmt für die Adriaküste mit über 1.000 Inseln, die Plitvicer Seen und Dubrovnik.',
+        'A2', 'coast', 'Küste', 'The rocky coast has many hidden beaches.', 'The rocky _____ has many hidden beaches.', 'coast', '„On the coast“ bedeutet „an der Küste“.'
+      ],
+      [26, 3,
+        'Schwarzhütiger Steinpilz', 'Bronze Bolete', 'Boletus aereus', 'E', 'Ein wärmeliebender Verwandter des Steinpilzes mit samtigem, dunkelbraunem Hut.',
+        'Slowenien', 'Slovenia', '🇸🇮', 'Ljubljana', 'Bekannt für den märchenhaften Bleder See mit kleiner Inselkirche und riesige Tropfsteinhöhlen.',
+        'A2', 'clear', 'klar', 'You can see fish swimming in the clear water.', 'You can see fish swimming in the _____ water.', 'clear', 'Bedeutet sowohl „klar/durchsichtig“ als auch „verständlich“ (That is clear!).'
+      ],
+      [27, 3,
+        'Kräuter-Seitling', 'King Oyster Mushroom', 'Pleurotus eryngii', 'E', 'Sein dicker, knackiger Stiel ist besonders aromatisch und ideal zum Braten oder Grillen.',
+        'Malta', 'Malta', '🇲🇹', 'Valletta', 'Ein sonniger Inselstaat mit uralten Megalith-Tempeln und goldenem Kalkstein.',
+        'A2', 'harbor', 'Hafen', 'Colorful fishing boats float in the old harbor.', 'Colorful fishing boats float in the old _____.', 'harbor', 'US: „harbor“, UK: „harbour“ – beide sind gebräuchlich.'
+      ],
+      [28, 3,
+        'Satans-Röhrling', 'Satan\'s Bolete', 'Rubroboletus satanas', 'G', 'Sein weißer Hut und der knallrote Stiel warnen deutlich: Dieser seltene Pilz ist stark magengiftig.',
+        'Zypern', 'Cyprus', '🇨🇾', 'Nikosia', 'Die sonnenverwöhnte Mittelmeerinsel gilt als Heimat der Aphrodite und des Halloumi-Käses.',
+        'A2', 'warning', 'Warnung', 'Bright red colors in nature are often a warning.', 'Bright red colors in nature are often a _____.', 'warning', 'Kommt vom Verb „to warn“ (warnen).'
+      ],
+      [29, 3,
+        'Südlicher Ackerling', 'Poplar Mushroom', 'Cyclocybe aegerita', 'E', 'Wird auch Pioppino genannt und wurde bereits in der Antike auf Pappelholz kultiviert.',
+        'Bulgarien', 'Bulgaria', '🇧🇬', 'Sofia', 'Berühmt für das duftende Rosental, das Rila-Kloster und die lange Schwarzmeerküste.',
+        'A2', 'valley', 'Tal', 'Thousands of roses bloom in the warm valley.', 'Thousands of roses bloom in the warm _____.', 'valley', 'Im Plural einfach ein „s“ anhängen: „valleys“ (nicht -ies!).'
+      ],
+      [30, 3,
+        'Dunkelvioletter Schleierling', 'Violet Webcap', 'Cortinarius violaceus', 'B', 'Sein tiefes, samtiges Violett macht ihn zu einem der schönsten und seltensten Pilze Europas.',
+        'Rumänien', 'Romania', '🇷🇴', 'Bukarest', 'Heimat der Karpaten, der Donaudelta-Natur und des sagenumwobenen Schlosses Bran in Transsilvanien.',
+        'A2', 'rare', 'selten', 'We were lucky to spot a rare purple mushroom.', 'We were lucky to spot a _____ purple mushroom.', 'rare', '„To spot“ bedeutet auf Englisch auch „entdecken / erspähen“.'
+      ],
+
+      // ==================== KAPITEL 4: SEIDENSTRASSE & ORIENT (31-40, A2–A2+) ====================
+      [31, 4,
+        'Birkenporling', 'Birch Polypore', 'Fomitopsis betulina', 'H', 'Wächst kissenförmig an toten Birken und wird traditionell als bitterer Tee aufgegossen.',
+        'Türkei', 'Turkey', '🇹🇷', 'Ankara', 'Verbindet Europa und Asien; berühmt für Istanbuls Basar, Kappadokiens Heißluftballons und Baklava.',
+        'A2', 'market', 'Markt', 'The spice market smells like cinnamon and tea.', 'The spice _____ smells like cinnamon and tea.', 'market', '„Smells like“ = riecht nach.'
+      ],
+      [32, 4,
+        'Schiefer Schillerporling', 'Chaga Mushroom', 'Inonotus obliquus', 'H', 'Außen schwarz wie verbrannte Kohle, innen warm goldbraun – im Norden ein berühmter Vitalpilz.',
+        'Georgien', 'Georgia', '🇬🇪', 'Tiflis', 'Liegt im majestätischen Kaukasus und gilt als eine der ältesten Weinregionen der Welt.',
+        'A2', 'hospitality', 'Gastfreundschaft', 'The mountain village is known for its warm hospitality.', 'The mountain village is known for its warm _____.', 'hospitality', '„Known for“ = bekannt für (ähnlich wie „famous for“).'
+      ],
+      [33, 4,
+        'Frühjahrslorchel', 'False Morel', 'Gyromitra esculenta', 'G', 'Ihr Hut erinnert an ein kleines Gehirn – sie sieht Morcheln ähnlich, enthält aber gefährliches Gift.',
+        'Armenien', 'Armenia', '🇦🇲', 'Jerewan', 'Berühmt für alte Bergklöster, den Sewansee und den Blick auf den schneebedeckten Berg Ararat.',
+        'A2', 'similar', 'ähnlich', 'These two mushrooms look very similar at first glance.', 'These two mushrooms look very _____ at first glance.', 'similar', 'Merke: „similar to“ (ähnlich wie) – niemals „similar like“!'
+      ],
+      [34, 4,
+        'Grünspan-Träuschling', 'Verdigris Agaric', 'Stropharia aeruginosa', 'B', 'Sein türkisblauer, mit weißen Flöckchen besetzter Hut wirkt wie aus einem Fantasy-Film.',
+        'Aserbaidschan', 'Azerbaijan', '🇦🇿', 'Baku', 'Das „Land des Feuers“ am Kaspischen Meer, bekannt für die modernen Flammentürme und alte Teppichkunst.',
+        'A2', 'flame', 'Flamme', 'The modern towers look like three giant flames.', 'The modern towers look like three giant _____.', 'flame', '„Look like“ = aussehen wie.'
+      ],
+      [35, 4,
+        'Grüngefelderter Täubling', 'Green-Cracking Russula', 'Russula virescens', 'E', 'Sein pastellgrüner Hut reißt bei Trockenheit in kleine Felder auf – ein milder, feiner Speisepilz.',
+        'Jordanien', 'Jordan', '🇯🇴', 'Amman', 'Berühmt für die rosarote Felsenstadt Petra, die Wüste Wadi Rum und das Tote Meer.',
+        'A2', 'desert', 'Wüste', 'The stars shine brightly over the quiet desert.', 'The stars shine brightly over the quiet _____.', 'desert', 'Ein „s“ = desert (Wüste). Zwei „s“ = dessert (Nachtisch – man will immer mehr!).'
+      ],
+      [36, 4,
+        'Leberreischling', 'Beefsteak Fungus', 'Fistulina hepatica', 'E', 'Sieht an alten Eichen verblüffend wie ein Stück rotes Fleisch aus und schmeckt erfrischend säuerlich.',
+        'Oman', 'Oman', '🇴🇲', 'Maskat', 'Bekannt für duftenden Weihrauch, grüne Oasen (Wadis), goldene Dünen und beeindruckende Festungen.',
+        'A2+', 'journey', 'Reise / Fahrt', 'Our journey across the dunes took three hours.', 'Our _____ across the dunes took three hours.', 'journey', '„Journey“ betont den Weg von A nach B; „trip“ oft einen kürzeren Ausflug.'
+      ],
+      [37, 4,
+        'Flaschen-Stäubling', 'Common Puffball', 'Lycoperdon perlatum', 'E', 'Tippt man den reifen Pilz an, pustet er wie ein kleiner Vulkan eine feine Sporenwolke in die Luft.',
+        'Vereinigte Arabische Emirate', 'United Arab Emirates', '🇦🇪', 'Abu Dhabi', 'Heimat des höchsten Gebäudes der Welt (Burj Khalifa in Dubai) und weißer Marmor-Moscheen.',
+        'A2+', 'cloud', 'Wolke', 'A tiny cloud of spores rose into the air.', 'A tiny _____ of spores rose into the air.', 'cloud', '„Rose“ ist die Vergangenheitsform (Past Simple) von „rise“ (aufsteigen).'
+      ],
+      [38, 4,
+        'Honiggelber Hallimasch', 'Honey Fungus', 'Armillaria mellea', 'E', 'Das unterirdische Myzel einer Hallimasch-Art gehört zu den größten Lebewesen unseres Planeten!',
+        'Katar', 'Qatar', '🇶🇦', 'Doha', 'Eine Halbinsel am Persischen Golf, bekannt für das Museum für Islamische Kunst und futuristische Skylines.',
+        'A2+', 'giant', 'riesig / Riese', 'A giant network of roots hides beneath the soil.', 'A _____ network of roots hides beneath the soil.', 'giant', 'Funktioniert sowohl als Adjektiv (riesig) als auch als Nomen (a giant = ein Riese).'
+      ],
+      [39, 4,
+        'Schmetterlings-Tramete', 'Turkey Tail', 'Trametes versicolor', 'H', 'Ihre bunten, fächerförmigen Ringe auf Totholz erinnern an die Federn eines Truthahns oder Schmetterlings.',
+        'Saudi-Arabien', 'Saudi Arabia', '🇸🇦', 'Riad', 'Berühmt für die riesige Sandwüste Rub al-Chali, die antike Oase Al-Ula und das Rote Meer.',
+        'A2+', 'pattern', 'Muster', 'Every mushroom cap has its own colorful pattern.', 'Every mushroom cap has its own colorful _____.', 'pattern', 'Nach „every“ steht im Englischen immer der Singular (every cap has).'
+      ],
+      [40, 4,
+        'Falten-Tintling', 'Common Ink Cap', 'Coprinopsis atramentaria', 'G', 'Er bildet dichte Büschel, ist aber in Kombination mit Alkohol giftig und wird deshalb „Antialkoholpilz“ genannt.',
+        'Usbekistan', 'Uzbekistan', '🇺🇿', 'Taschkent', 'Herz der historischen Seidenstraße mit türkisblauen Kuppeln in Samarkand, Buchara und Chiwa.',
+        'A2+', 'trade route', 'Handelsroute', 'Samarkand was a famous stop on the ancient trade route.', 'Samarkand was a famous stop on the ancient _____.', 'trade route', '„Route“ spricht man im britischen Englisch „ruut“, im US-Englisch auch „raut“.'
+      ],
+
+      // ==================== KAPITEL 5: FERNOST & MONSUN (41-50, A2+–B1) ====================
+      [41, 5,
+        'Shiitake', 'Shiitake Mushroom', 'Lentinula edodes', 'E', 'Sein Name kommt vom japanischen Pasania-Baum („Shii“) – er verleiht Suppen tiefes Umami-Aroma.',
+        'Japan', 'Japan', '🇯🇵', 'Tokio', 'Berühmt für den Berg Fuji, Kirschblüten im Frühling, Shinkansen-Züge und traditionelle Teezeremonien.',
+        'A2+', 'tradition', 'Tradition', 'Drinking green tea together is a peaceful tradition.', 'Drinking green tea together is a peaceful _____.', 'tradition', 'Das Adjektiv dazu lautet „traditional“ (traditionell).'
+      ],
+      [42, 5,
+        'Glänzender Lackporling', 'Reishi', 'Ganoderma lucidum', 'H', 'In Asien heißt er „Pilz der Unsterblichkeit“ – seine Oberfläche glänzt, als wäre sie frisch lackiert.',
+        'Südkorea', 'South Korea', '🇰🇷', 'Seoul', 'Bekannt für historische Paläste, K-Pop, Kimchi, grüne Bergtempel und modernste Technik.',
+        'A2+', 'shiny', 'glänzend', 'The red cap looks smooth and shiny after the rain.', 'The red cap looks smooth and _____ after the rain.', 'shiny', 'Abgeleitet von „shine“ (scheinen/glänzen) – das stumme „e“ fällt vor „-y“ weg.'
+      ],
+      [43, 5,
+        'Igel-Stachelbart', 'Lion\'s Mane', 'Hericium erinaceus', 'H', 'Er hängt wie ein weißer Wasserfall aus feinen Zotteln an Bäumen und ähnelt einer flauschigen Löwenmähne.',
+        'China', 'China', '🇨🇳', 'Peking', 'Berühmt für die Große Mauer, die Terrakotta-Armee, Große Pandas und bunte Laternenfeste.',
+        'A2+', 'discover', 'entdecken', 'Travelers love to discover new dishes and landscapes.', 'Travelers love to _____ new dishes and landscapes.', 'discover', 'Nomen dazu: „discovery“ (Entdeckung) – „discover“ heißt entdecken.'
+      ],
+      [44, 5,
+        'Samtfußrübling', 'Enoki Mushroom', 'Flammulina velutipes', 'E', 'Im Dunkeln gezüchtet bildet er lange, weiße Fäden; in der Natur ist er honiggelb mit samtigem Stiel.',
+        'Indien', 'India', '🇮🇳', 'Neu-Delhi', 'Berühmt für das weiße Marmor-Mausoleum Taj Mahal, duftende Gewürze, Yoga und das Farbenfest Holi.',
+        'A2+', 'flavor', 'Geschmack / Aroma', 'Spices give this curry a rich and warm flavor.', 'Spices give this curry a rich and warm _____.', 'flavor', 'US: „flavor“, UK: „flavour“. Beschreibt das feine Aroma von Speisen.'
+      ],
+      [45, 5,
+        'Klapperschwamm', 'Maitake', 'Grifola frondosa', 'H', '„Maitake“ heißt auf Japanisch „tanzender Pilz“ – Finder sollen vor Freude getanzt haben!',
+        'Nepal', 'Nepal', '🇳🇵', 'Kathmandu', 'Heimat des höchsten Berges der Erde (Mount Everest) und farbenfroher Gebetsfahnen im Himalaya.',
+        'A2+', 'adventure', 'Abenteuer', 'Hiking in the Himalayas is an unforgettable adventure.', 'Hiking in the Himalayas is an unforgettable _____.', 'adventure', 'Aussprache: äd-WEN-tscher. Adjektiv: „adventurous“ (abenteuerlustig).'
+      ],
+      [46, 5,
+        'Judasohr', 'Wood Ear', 'Auricularia auricula-judae', 'E', 'Dieser weiche, ohrförmige Pilz wächst an Holundersträuchern und ist in der asiatischen Küche als Mu-Err beliebt.',
+        'Bhutan', 'Bhutan', '🇧🇹', 'Thimphu', 'Das kleine Himalaya-Königreich misst seinen Erfolg am „Bruttonationalglück“ und schützt seine Wälder.',
+        'A2+', 'peaceful', 'friedlich', 'The monastery high in the cliffs feels very peaceful.', 'The monastery high in the cliffs feels very _____.', 'peaceful', 'Wieder „-ful“ mit nur einem L! Peace (Frieden) + ful.'
+      ],
+      [47, 5,
+        'Matsutake', 'Pine Mushroom', 'Tricholoma matsutake', 'E', 'Einer der teuersten Pilze der Welt – sein würziger Duft nach Zimt und Kiefernharz ist in Japan legendär.',
+        'Sri Lanka', 'Sri Lanka', '🇱🇰', 'Sri Jayewardenepura Kotte', 'Die „Perle des Indischen Ozeans“ ist berühmt für grüne Teeplantagen, Elefanten und Zimt.',
+        'A2+', 'valuable', 'wertvoll', 'Wild pine mushrooms are rare and very valuable.', 'Wild pine mushrooms are rare and very _____.', 'valuable', 'Gegenteil: „worthless“ (wertlos). Achtung: „invaluable“ heißt „unschätzbar wertvoll“!'
+      ],
+      [48, 5,
+        'Silberohr', 'Snow Fungus', 'Tremella fuciformis', 'H', 'Durchscheinend weiß wie eine Eisblume oder Koralle – in Ostasien sogar beliebt in süßen Desserts!',
+        'Mongolei', 'Mongolia', '🇲🇳', 'Ulaanbaatar', 'Bekannt für endlose grüne Steppen, Wildpferde, die Wüste Gobi und traditionelle runde Jurten.',
+        'A2+', 'landscape', 'Landschaft', 'The wide green landscape stretches to the horizon.', 'The wide green _____ stretches to the horizon.', 'landscape', 'Merkhilfe: Land + scape (wie das deutsche „-schaft“).'
+      ],
+      [49, 5,
+        'Buchenpilz', 'Shimeji', 'Hypsizygus tessellatus', 'E', 'Wächst in niedlichen kleinen Grüppchen mit leicht marmorierten Hüten und knackigem Biss.',
+        'Kasachstan', 'Kazakhstan', '🇰🇿', 'Astana', 'Das größte Binnenland der Erde, berühmt für den tiefblauen Kaindy-See und moderne Architektur.',
+        'A2+', 'friendly', 'freundlich', 'The local guides were helpful and friendly.', 'The local guides were helpful and _____.', 'friendly', 'Achtung Falle: Trotz „-ly“ ist „friendly“ ein Adjektiv, kein Adverb!'
+      ],
+      [50, 5,
+        'Puppen-Kernkeule', 'Scarlet Caterpillar Club', 'Cordyceps militaris', 'H', 'Ihre leuchtend orangen Keulchen gehören zu den faszinierendsten Pilzen der Natur und werden heute pflanzlich gezüchtet.',
+        'Kirgisistan', 'Kyrgyzstan', '🇰🇬', 'Bischkek', 'Über 90 % des Landes bestehen aus hohen Bergen des Tian-Shan-Gebirges und klaren Alpenseen.',
+        'A2+', 'surprising', 'überraschend', 'Nature is full of surprising shapes and colors.', 'Nature is full of _____ shapes and colors.', 'surprising', 'Endung „-ing“ beschreibt eine Eigenschaft (überraschend), „-ed“ ein Gefühl (I am surprised).'
+      ],
+
+      // ==================== KAPITEL 6: TEMPEL & GEWÜRZINSELN (51-60, B1) ====================
+      [51, 6,
+        'Schleierdame', 'Veiled Lady', 'Phallus indusiatus', 'E', 'Nach dem Regen entfaltet sie innerhalb weniger Stunden ein zartes weißes Spitzennetz wie ein Brautkleid.',
+        'Thailand', 'Thailand', '🇹🇭', 'Bangkok', 'Berühmt für goldene Tempel, schwimmende Märkte, Pad Thai und türkisblaue Kalksteinbuchten.',
+        'B1', 'delicate', 'zart / empfindlich', 'The mushroom opens a delicate white net like lace.', 'The mushroom opens a _____ white net like lace.', 'delicate', 'Aussprache: DE-li-kät. Ideal für feine Pflanzen, Stoffe oder Aromen.'
+      ],
+      [52, 6,
+        'Reisstrohpilz', 'Paddy Straw Mushroom', 'Volvariella volvacea', 'E', 'Er wächst blitzschnell auf warmem Reisstroh und ist ein Klassiker in tropischen Wok-Gerichten.',
+        'Vietnam', 'Vietnam', '🇻🇳', 'Hanoi', 'Bekannt für die Kalksteinfelsen der Ha-Long-Bucht, grüne Reisterrassen und aromatische Pho-Suppe.',
+        'B1', 'humid', 'feucht-warm / schwül', 'Tropical fungi grow quickly in a warm and humid climate.', 'Tropical fungi grow quickly in a warm and _____ climate.', 'humid', '„Humid“ beschreibt feuchte Luft (Nomen: humidity), „wet“ eher nasse Gegenstände.'
+      ],
+      [53, 6,
+        'Leuchtender Helmling', 'Glowing Mycena', 'Mycena chlorophos', 'B', 'In tropischen Nächten strahlt dieser winzige Pilz ein magisches, smaragdgrünes Biolumineszenz-Licht aus!',
+        'Indonesien', 'Indonesia', '🇮🇩', 'Jakarta', 'Ein Inselstaat aus über 17.000 Inseln mit Bali, Komodowaranen und dem riesigen Borobudur-Tempel.',
+        'B1', 'glow', 'leuchten / schimmern', 'At night, these tiny mushrooms glow softly in the dark.', 'At night, these tiny mushrooms _____ softly in the dark.', 'glow', 'Beschreibt sanftes, ruhiges Leuchten (wie Glühwürmchen oder Glut).'
+      ],
+      [54, 6,
+        'Rosaseitling', 'Pink Oyster Mushroom', 'Pleurotus djamor', 'E', 'Seine zartrosa, welligen Hüte sehen aus wie tropische Blüten – beim Braten verblasst das Rosa leicht.',
+        'Malaysia', 'Malaysia', '🇲🇾', 'Kuala Lumpur', 'Berühmt für die Petronas-Zwillingstürme, uralte Regenwälder auf Borneo und Orang-Utans.',
+        'B1', 'rainforest', 'Regenwald', 'Countless colorful species live in the rainforest.', 'Countless colorful species live in the _____.', 'rainforest', '„Countless“ bedeutet „unzählige“ (count + less).'
+      ],
+      [55, 6,
+        'Zitronenseitling', 'Golden Oyster Mushroom', 'Pleurotus citrinopileatus', 'E', 'Er wächst in strahlend gelben Sträußen und duftet fein nach Cashewnüssen und Sommerblumen.',
+        'Philippinen', 'Philippines', '🇵🇭', 'Manila', 'Über 7.000 tropische Inseln mit den berühmten Chocolate Hills und unterirdischen Flüssen.',
+        'B1', 'cluster', 'Büschel / Gruppe', 'Bright yellow caps grow together in a dense cluster.', 'Bright yellow caps grow together in a dense _____.', 'cluster', 'Sehr nützlich für dicht beieinander wachsende Pilze, Blumen oder Sterne.'
+      ],
+      [56, 6,
+        'Tropischer Becherling', 'Tropical Cup Fungus', 'Cookeina speciosa', 'B', 'Sieht aus wie ein winziger, rosaroter Kelch mit zarten Härchen am Rand, der Regentropfen auffängt.',
+        'Singapur', 'Singapore', '🇸🇬', 'Singapur', 'Die grüne „Gartenstadt“ mit den futuristischen Supertrees in den Gardens by the Bay.',
+        'B1', 'modern', 'modern', 'Singapore blends modern architecture with lush gardens.', 'Singapore blends _____ architecture with lush gardens.', 'modern', '„To blend“ heißt hier „harmonisch verbinden / mischen“.'
+      ],
+      [57, 6,
+        'Spaltblättling', 'Splitgill Mushroom', 'Schizophyllum commune', 'B', 'Kommt auf fast jedem Kontinent vor und hat über 23.000 verschiedene Paarungstypen – ein Rekord der Natur!',
+        'Kambodscha', 'Cambodia', '🇰🇭', 'Phnom Penh', 'Heimat der riesigen, von Urwaldwurzeln umrankten Tempelanlage Angkor Wat.',
+        'B1', 'survive', 'überleben', 'This tough little fungus can survive almost everywhere.', 'This tough little fungus can _____ almost everywhere.', 'survive', 'Nomen dazu: „survival“ (Überleben).'
+      ],
+      [58, 6,
+        'Netz-Stinkmorchel', 'Netted Stinkhorn', 'Phallus duplicatus', 'B', 'Trägt einen kurzen weißen Spitzenkragen unter dem Hut und lässt Insekten ihre Sporen weit verbreiten.',
+        'Laos', 'Laos', '🇱🇦', 'Vientiane', 'Berühmt für die goldene Tempelstadt Luang Prabang, türkisfarbene Wasserfälle und den Mekong.',
+        'B1', 'spread', 'verbreiten / ausbreiten', 'Insects help spread fungal spores across the forest.', 'Insects help _____ fungal spores across the forest.', 'spread', 'Unregelmäßiges Verb: spread – spread – spread (bleibt in allen Zeiten gleich!).'
+      ],
+      [59, 6,
+        'Indigo-Milchling', 'Indigo Milk Cap', 'Lactarius indigo', 'E', 'Er ist tatsächlich außen und innen leuchtend jeansblau – sogar seine Milch ist tiefblau, und er ist essbar!',
+        'Brunei', 'Brunei', '🇧🇳', 'Bandar Seri Begawan', 'Ein kleines Sultanat auf Borneo mit unberührtem Regenwald und dem großen Wasserdorf Kampong Ayer.',
+        'B1', 'unusual', 'ungewöhnlich', 'Seeing a completely blue mushroom is quite unusual.', 'Seeing a completely blue mushroom is quite _____.', 'unusual', 'Die Vorsilbe „un-“ kehrt „usual“ (gewöhnlich) ins Gegenteil um.'
+      ],
+      [60, 6,
+        'Vielgestaltige Holzkeule', 'Dead Man\'s Fingers', 'Xylaria polymorpha', 'B', 'Ihre dunklen Keulen ragen wie gruselige kleine Finger aus alten Baumstümpfen und bauen Totholz ab.',
+        'Malediven', 'Maldives', '🇲🇻', 'Malé', 'Bestehen aus 26 Korallenatollen im Indischen Ozean mit strahlend weißen Stränden und Korallenriffen.',
+        'B1', 'recycle', 'wiederverwerten / zersetzen', 'Wood fungi naturally recycle old fallen trees into soil.', 'Wood fungi naturally _____ old fallen trees into soil.', 'recycle', 'Pilze sind die wichtigsten „Recycler“ jedes Waldökosystems!'
+      ],
+
+      // ==================== KAPITEL 7: SAVANNEN & OASEN AFRIKAS (61-70, B1) ====================
+      [61, 7,
+        'Wüsten-Schopftintling', 'Desert Shaggy Mane', 'Podaxis pistillaris', 'B', 'Er überlebt in heißen Trockengebieten und sprießt blitzschnell nach seltenen Wüstenregenfällen.',
+        'Ägypten', 'Egypt', '🇪🇬', 'Kairo', 'Heimat der Pyramiden von Gizeh, der Sphinx, des mächtigen Nils und uralter Pharaonenschätze.',
+        'B1', 'adapt', 'sich anpassen', 'Desert plants and fungi must adapt to dry heat.', 'Desert plants and fungi must _____ to dry heat.', 'adapt', 'Merke die Präposition: „adapt to“ (sich anpassen an).'
+      ],
+      [62, 7,
+        'Stelzenstäubling', 'Sandy Stiltball', 'Battarrea phalloides', 'B', 'Wächst auf einem ungewöhnlich langen, holzigen Stiel in sandigen Böden, damit der Wind seine Sporen trägt.',
+        'Marokko', 'Morocco', '🇲🇦', 'Rabat', 'Berühmt für die rote Stadt Marrakesch, das blaue Chefchaouen, das Atlasgebirge und die Sahara.',
+        'B1', 'breeze', 'Brise / sanfter Wind', 'A cool evening breeze blows across the sand dunes.', 'A cool evening _____ blows across the sand dunes.', 'breeze', 'Sanfter und angenehmer als „wind“ oder „storm“.'
+      ],
+      [63, 7,
+        'Grünsporiger Riesenschirmling', 'False Parasol', 'Chlorophyllum molybdites', 'G', 'Er ähnelt dem Parasol, hat aber grüne Sporen – er ist der häufigste Verursacher von Pilzvergiftungen weltweit.',
+        'Tunesien', 'Tunisia', '🇹🇳', 'Tunis', 'Bekannt für die Ruinen von Karthago, weiß-blaue Dörfer am Mittelmeer und weite Dattelpalmen-Oasen.',
+        'B1', 'compare', 'vergleichen', 'Always compare the spore color before identifying a mushroom.', 'Always _____ the spore color before identifying a mushroom.', 'compare', '„Compare A with B“ = A mit B vergleichen.'
+      ],
+      [64, 7,
+        'Halskrausen-Erdstern', 'Collared Earthstar', 'Geastrum triplex', 'B', 'Seine äußere Hülle platzt sternförmig auf und hebt die kleine Sporenkugel wie auf einem Kissen empor.',
+        'Kenia', 'Kenya', '🇰🇪', 'Nairobi', 'Berühmt für die Savanne der Masai Mara, große Tierwanderungen und den Blick auf den Mount Kenya.',
+        'B1', 'wildlife', 'Tierwelt / Wildtiere', 'Kenya is famous for protecting its amazing wildlife.', 'Kenya is famous for protecting its amazing _____.', 'wildlife', '„Wildlife“ ist unzählbar – man sagt also nie „wildlifes“!'
+      ],
+      [65, 7,
+        'Gestreifter Teuerling', 'Fluted Bird\'s Nest', 'Cyathus striatus', 'B', 'Ein winziges „Vogelnest“ voller Sporen-Eier: Regentropfen schleudern die kleinen Päckchen bis zu 1 Meter weit!',
+        'Tansania', 'Tanzania', '🇹🇿', 'Dodoma', 'Heimat des höchsten Berges Afrikas (Kilimandscharo), der Serengeti und der Gewürzinsel Sansibar.',
+        'B1', 'clever', 'klug / raffiniert', 'This fungus uses raindrops in a very clever way.', 'This fungus uses raindrops in a very _____ way.', 'clever', '„In a clever way“ = auf eine raffinierte Art und Weise.'
+      ],
+      [66, 7,
+        'Hundsrute', 'Dog Stinkhorn', 'Mutinus caninus', 'B', 'Wächst aus einem kleinen weißen „Hexenei“ und trägt eine leuchtend orange Spitze im Herbstlaub.',
+        'Südafrika', 'South Africa', '🇿🇦', 'Pretoria', 'Bekannt für den Tafelberg in Kapstadt, den Krüger-Nationalpark und Pinguine am Kap der Guten Hoffnung.',
+        'B1', 'diverse', 'vielfältig', 'South Africa has a remarkably diverse nature and culture.', 'South Africa has a remarkably _____ nature and culture.', 'diverse', 'Nomen: „diversity“ (Vielfalt), z. B. „biodiversity“.'
+      ],
+      [67, 7,
+        'Gemeine Stinkmorchel', 'Common Stinkhorn', 'Phallus impudicus', 'B', 'Ihr kräftiger Geruch ist schon aus mehreren Metern riechbar – doch Fliegen finden ihn einfach unwiderstehlich!',
+        'Namibia', 'Namibia', '🇳🇦', 'Windhoek', 'Berühmt für die feuerroten Sanddünen von Sossusvlei, die Skelettküste und den Etosha-Nationalpark.',
+        'B1', 'attract', 'anlocken / anziehen', 'Strong scents attract insects from far away.', 'Strong scents _____ insects from far away.', 'attract', 'Das Adjektiv dazu kennst du sicher: „attractive“!'
+      ],
+      [68, 7,
+        'Zinnoberrote Tramete', 'Cinnabar Bracket', 'Pycnoporus cinnabarinus', 'B', 'Strahlt in leuchtendem Zinnoberrot auf sonnigem Laubholz und verblasst selbst nach Monaten kaum.',
+        'Botswana', 'Botswana', '🇧🇼', 'Gaborone', 'Berühmt für das wasserreiche Okavango-Delta mitten in der Kalahari und riesige Elefantenherden.',
+        'B1', 'protect', 'schützen', 'National parks help protect endangered animals and habitats.', 'National parks help _____ endangered animals and habitats.', 'protect', 'Nomen: „protection“ (Schutz). „Endangered“ = bedroht.'
+      ],
+      [69, 7,
+        'Klebriger Hörnling', 'Yellow Stagshorn', 'Calocera viscosa', 'B', 'Sieht auf bemoosten Nadelholzstümpfen aus wie eine winzige, goldorange Koralle aus dem Meer.',
+        'Äthiopien', 'Ethiopia', '🇪🇹', 'Addis Abeba', 'Gilt als Ursprungsland des Kaffees und ist berühmt für die aus Fels gehauenen Kirchen von Lalibela.',
+        'B1', 'origin', 'Ursprung / Herkunft', 'Ethiopia is celebrated as the origin of Arabica coffee.', 'Ethiopia is celebrated as the _____ of Arabica coffee.', 'origin', 'Das Adjektiv „original“ (ursprünglich) stammt direkt davon ab.'
+      ],
+      [70, 7,
+        'Goldgelber Zitterling', 'Witch\'s Butter', 'Tremella mesenterica', 'B', 'Bei Regen schwillt er zu leuchtend gelbem Wackelpudding an; bei Trockenheit schrumpft er zur dünnen Kruste.',
+        'Ghana', 'Ghana', '🇬🇭', 'Accra', 'Bekannt für farbenfrohe Kente-Webstoffe, Kakaoanbau, gastfreundliche Menschen und den Kakum-Baumwipfelpfad.',
+        'B1', 'expand', 'sich ausdehnen / anschwellen', 'After heavy rain, jelly fungi expand to full size.', 'After heavy rain, jelly fungi _____ to full size.', 'expand', 'Gegenteil: „shrink“ (schrumpfen).'
+      ],
+
+      // ==================== KAPITEL 8: REGENWALD & ANDEN (71-80, B1+) ====================
+      [71, 8,
+        'Herber Zwergknäueling', 'Bitter Oyster', 'Panellus stipticus', 'B', 'Nordamerikanische Stämme dieses winzigen Baumpilzes leuchten nachts geheimnisvoll im Dunkeln.',
+        'Brasilien', 'Brazil', '🇧🇷', 'Brasília', 'Heimat des Amazonas-Regenwaldes, der Christusstatue in Rio de Janeiro, des Samba und der Iguaçu-Wasserfälle.',
+        'B1+', 'ecosystem', 'Ökosystem', 'The Amazon rainforest is a vital global ecosystem.', 'The Amazon rainforest is a vital global _____.', 'ecosystem', '„Vital“ bedeutet „lebenswichtig“ – ein starkes Wort für B1+!'
+      ],
+      [72, 8,
+        'Kirschroter Saftling', 'Scarlet Waxcap', 'Hygrocybe coccinea', 'B', 'Ein glänzend kirschroter Wiesenpilz, der nur auf ungedüngten, naturnahen Magerwiesen wächst.',
+        'Argentinien', 'Argentina', '🇦🇷', 'Buenos Aires', 'Berühmt für Tango, die Gletscher Patagoniens, die Anden und weite Pampas-Landschaften.',
+        'B1+', 'glacier', 'Gletscher', 'Huge blocks of blue ice slowly shape the glacier.', 'Huge blocks of blue ice slowly shape the _____.', 'glacier', 'Aussprache: GLÄI-scher (US) oder GLÄ-si-er (UK).'
+      ],
+      [73, 8,
+        'Papageien-Saftling', 'Parrot Waxcap', 'Gliophorus psittacinus', 'B', 'Jung strahlt er in knalligem Papageiengrün und verfärbt sich später magisch in Gelb, Orange oder Rosa!',
+        'Chile', 'Chile', '🇨🇱', 'Santiago de Chile', 'Das schmale Land erstreckt sich von der trockenen Atacama-Wüste bis zu den Gipfeln von Torres del Paine.',
+        'B1+', 'transform', 'verwandeln', 'As it ages, the mushroom can transform from green to gold.', 'As it ages, the mushroom can _____ from green to gold.', 'transform', '„As it ages“ = während er älter wird.'
+      ],
+      [74, 8,
+        'Blutender Korkstacheling', 'Bleeding Tooth Fungus', 'Hydnellum peckii', 'B', 'Jung drückt er leuchtend rote, sirupartige Tröpfchen aus seinem weißen Hut – er sieht aus wie ein Erdbeer-Kuchen!',
+        'Peru', 'Peru', '🇵🇪', 'Lima', 'Berühmt für die Inka-Stadt Machu Picchu in den Anden, den Titicacasee und bunte Alpakas.',
+        'B1+', 'remarkable', 'bemerkenswert', 'Machu Picchu is a remarkable achievement of Inca architecture.', 'Machu Picchu is a _____ achievement of Inca architecture.', 'remarkable', 'Kommt von „remark“ (bemerken) – etwas, das eine Bemerkung wert ist.'
+      ],
+      [75, 8,
+        'Scharlachroter Kelchbecherling', 'Scarlet Elf Cup', 'Sarcoscypha coccinea', 'B', 'Schon mitten im Winter leuchten seine knallroten Schälchen auf bemoosten Zweigen wie kleine Elfenbecher.',
+        'Kolumbien', 'Colombia', '🇨🇴', 'Bogotá', 'Land des Kaffees, der Smaragde, der bunten Stadt Cartagena und der weltweit höchsten Wachspalmen.',
+        'B1+', 'stand out', 'hervorstechen / auffallen', 'The bright red cups stand out against the winter moss.', 'The bright red cups _____ against the winter moss.', 'stand out', 'Ein super wichtiges Phrasal Verb! „Stand out“ = deutlich auffallen.'
+      ],
+      [76, 8,
+        'Kleinsporiger Grünspanbecherling', 'Green Elfcup', 'Chlorociboria aeruginascens', 'B', 'Sein Myzel färbt altes Holz dauerhaft türkisgrün – früher nutzten Tischler dieses Holz für edle Intarsien!',
+        'Ecuador', 'Ecuador', '🇪🇨', 'Quito', 'Benannt nach dem Äquator und berühmt für die einzigartige Tierwelt der Galápagos-Inseln.',
+        'B1+', 'unique', 'einzigartig', 'The Galápagos Islands are home to many unique species.', 'The Galápagos Islands are home to many _____ species.', 'unique', 'Achtung Artikel: „a unique species“ (nicht „an“!), weil das „u“ wie „ju“ klingt.'
+      ],
+      [77, 8,
+        'Orangebecherling', 'Orange Peel Fungus', 'Aleuria aurantia', 'E', 'Sieht auf Waldwegen täuschend echt aus wie weggeworfene, leuchtende Orangenschalen!',
+        'Bolivien', 'Bolivia', '🇧🇴', 'Sucre', 'Bekannt für den riesigen Salzsee Salar de Uyuni, der nach Regen wie ein perfekter Himmelsspiegel wirkt.',
+        'B1+', 'reflect', 'spiegeln / reflektieren', 'After rainfall, the salt flat reflects the entire sky.', 'After rainfall, the salt flat _____ the entire sky.', 'reflect', 'Kann auch „nachdenken über“ bedeuten: „reflect on something“.'
+      ],
+      [78, 8,
+        'Blut-Helmling', 'Bleeding Fairy Helmet', 'Mycena haematopus', 'B', 'Knickt man den winzigen, hübschen Stiel an, tritt ein dunkler, weinroter Saft aus.',
+        'Uruguay', 'Uruguay', '🇺🇾', 'Montevideo', 'Berühmt für entspannte Atlantikstrände, die historische Stadt Colonia del Sacramento und Mate-Tee.',
+        'B1+', 'fragile', 'zerbrechlich / filigran', 'Small forest mushrooms often have very fragile stems.', 'Small forest mushrooms often have very _____ stems.', 'fragile', 'Aussprache: FRÄ-dschail (UK) oder FRÄ-dschəl (US).'
+      ],
+      [79, 8,
+        'Halsband-Schwindling', 'Pinwheel Mushroom', 'Marasmius rotula', 'B', 'Sein winziger weißer Hut ist wie ein kleines Zahnrad gefaltet und sitzt auf einem haarfeinen schwarzen Stiel.',
+        'Paraguay', 'Paraguay', '🇵🇾', 'Asunción', 'Das „Herz Südamerikas“, bekannt für kunstvolle Ñandutí-Spitzenstickerei und große Flusslandschaften.',
+        'B1+', 'intricate', 'kunstvoll / fein verzweigt', 'Look closely at the intricate gills beneath the tiny cap.', 'Look closely at the _____ gills beneath the tiny cap.', 'intricate', 'Tolles B1+-Wort für sehr feine Muster, Handwerkskunst oder Naturformen.'
+      ],
+      [80, 8,
+        'Gesäter Tintling', 'Fairy Inkcap', 'Coprinellus disseminatus', 'B', 'Er erscheint oft zu Hunderten oder Tausenden dicht gedrängt auf alten Baumstümpfen wie ein kleines Feendorf.',
+        'Costa Rica', 'Costa Rica', '🇨🇷', 'San José', 'Berühmt für das Lebensmotto „Pura Vida“, Nebelwälder, Faultiere und vorbildlichen Naturschutz.',
+        'B1+', 'biodiversity', 'Artenvielfalt', 'Costa Rica is celebrated worldwide for its rich biodiversity.', 'Costa Rica is celebrated worldwide for its rich _____.', 'biodiversity', 'Bio (Leben) + diversity (Vielfalt) = biologische Artenvielfalt.'
+      ],
+
+      // ==================== KAPITEL 9: PRÄRIEN & KARIBIK (81-90, B1+–B2) ====================
+      [81, 9,
+        'Spitzmorchel', 'Black Morel', 'Morchella elata', 'E', 'Sie erscheint im Frühling oft genau dort, wo Jahre zuvor ein Waldbrand den Boden verändert hat.',
+        'Vereinigte Staaten', 'United States', '🇺🇸', 'Washington, D.C.', 'Berühmt für Nationalparks wie Grand Canyon und Yellowstone, New York City und riesige Mammutbäume.',
+        'B1+', 'recover', 'sich erholen', 'Forests gradually recover after natural wildfires.', 'Forests gradually _____ after natural wildfires.', 'recover', '„Gradually“ bedeutet „allmählich / nach und nach“.'
+      ],
+      [82, 9,
+        'Trompetenpfifferling', 'Funnel Chanterelle', 'Craterellus tubaeformis', 'E', 'Ein später Herbstpilz mit trichterförmigem Hut, der wunderbar getrocknet werden kann.',
+        'Kanada', 'Canada', '🇨🇦', 'Ottawa', 'Bekannt für die Rocky Mountains, die Niagarafälle, Ahornsirup, Elche und glasklare Seen.',
+        'B1+', 'wilderness', 'Wildnis', 'Canada offers vast areas of untouched wilderness.', 'Canada offers vast areas of untouched _____.', 'wilderness', '„Vast“ heißt „riesig / weitläufig“ – ideal für Landschaften!'
+      ],
+      [83, 9,
+        'Pazifischer Pfifferling', 'Pacific Golden Chanterelle', 'Cantharellus formosus', 'E', 'Der offizielle Staatspilz von Oregon in den USA – er liebt die nebligen Küstenwälder des Pazifiks.',
+        'Mexiko', 'Mexico', '🇲🇽', 'Mexiko-Stadt', 'Berühmt für die Maya-Pyramiden von Chichén Itzá, den bunten Día de los Muertos und köstliche Küche.',
+        'B1+', 'heritage', 'Kulturerbe', 'Ancient pyramids are a proud part of Mexican heritage.', 'Ancient pyramids are a proud part of Mexican _____.', 'heritage', '„World Heritage Site“ = UNESCO-Weltkulturerbe.'
+      ],
+      [84, 9,
+        'Pantherpilz', 'Panther Cap', 'Amanita pantherina', 'G', 'Sein brauner Hut trägt schneeweiße Flocken wie ein umgekehrter Fliegenpilz – er ist stark giftig!',
+        'Kuba', 'Cuba', '🇨🇺', 'Havanna', 'Bekannt für bunte Oldtimer, Salsa-Musik, karibische Strände und die historische Altstadt von Havanna.',
+        'B1+', 'mistake for', 'verwechseln mit', 'Beginners sometimes mistake the panther cap for an edible mushroom.', 'Beginners sometimes _____ the panther cap for an edible mushroom.', 'mistake', 'Wendung: „to mistake A for B“ = A mit B verwechseln!'
+      ],
+      [85, 9,
+        'Perlpilz', 'The Blusher', 'Amanita rubescens', 'E', 'Sein Fleisch rötet bei Verletzungen zart rosa („errötet“) – er darf aber nur gut durchgegart gegessen werden.',
+        'Jamaika', 'Jamaica', '🇯🇲', 'Kingston', 'Heimat der Reggae-Musik, der grünen Blue Mountains und weltberühmten Kaffees.',
+        'B1+', 'distinctive', 'unverwechselbar / markant', 'A pinkish tint on the stem is a distinctive feature.', 'A pinkish tint on the stem is a _____ feature.', 'distinctive', 'Beschreibt ein klares Erkennungsmerkmal, das etwas von anderem unterscheidet.'
+      ],
+      [86, 9,
+        'Spei-Täubling', 'The Sickener', 'Russula emetica', 'G', 'Knallrot mit schneeweißen Lamellen – schon ein winziges Stück schmeckt brennend scharf wie Chili!',
+        'Dominikanische Republik', 'Dominican Republic', '🇩🇴', 'Santo Domingo', 'Berühmt für karibische Palmenstrände, Merengue-Musik und die älteste europäische Stadt Amerikas.',
+        'B2', 'deceptive', 'trügerisch / täuschend', 'Its cheerful red appearance is quite deceptive.', 'Its cheerful red appearance is quite _____.', 'deceptive', 'B2-Wortschatz: Kommt von „deceive“ (täuschen).'
+      ],
+      [87, 9,
+        'Gold-Röhrling', 'Larch Bolete', 'Suillus grevillei', 'E', 'Er wächst fast ausschließlich in treuer Partnerschaft mit Lärchen und leuchtet wie flüssiges Gold.',
+        'Bahamas', 'Bahamas', '🇧🇸', 'Nassau', 'Über 700 karibische Inseln und Korallenriffe, berühmt für kristallklares türkises Wasser.',
+        'B2', 'rely on', 'angewiesen sein auf', 'Many forest fungi rely on specific partner trees.', 'Many forest fungi _____ specific partner trees.', 'rely on', 'Starkes B2-Phrasal-Verb! „Rely on“ = sich verlassen auf / angewiesen sein auf.'
+      ],
+      [88, 9,
+        'Grünblättriger Schwefelkopf', 'Sulfur Tuft', 'Hypholoma fasciculare', 'G', 'Er bildet große gelbe Büschel auf Holz, hat aber grünliche Lamellen und ist sehr bitter und giftig.',
+        'Panama', 'Panama', '🇵🇦', 'Panama-Stadt', 'Berühmt für den weltbekannten Panamakanal, der Atlantik und Pazifik miteinander verbindet.',
+        'B2', 'distinguish', 'unterscheiden', 'Experts can easily distinguish look-alike mushrooms.', 'Experts can easily _____ look-alike mushrooms.', 'distinguish', '„Look-alike“ = Doppelgänger! „Distinguish“ = klar unterscheiden.'
+      ],
+      [89, 9,
+        'Gemeines Stockschwämmchen', 'Sheathed Woodtuft', 'Kuehneromyces mutabilis', 'E', 'Ein feiner Speisepilz mit geschupptem Stiel – erfordert aber genaue Kenntnis wegen giftiger Doppelgänger.',
+        'Guatemala', 'Guatemala', '🇬🇹', 'Guatemala-Stadt', 'Land der Vulkane, des tiefblauen Atitlán-Sees und der hoch aufragenden Maya-Tempel von Tikal.',
+        'B2', 'essential', 'unerlässlich / wesentlich', 'Careful observation is essential when studying wild fungi.', 'Careful observation is _____ when studying wild fungi.', 'essential', 'Stärkere B2-Alternative zu „very important“.'
+      ],
+      [90, 9,
+        'Violetter Rötelritterling', 'Wood Blewit', 'Lepista nuda', 'E', 'Ein duftender Spätherbstpilz in zartem Fliederlila, der selbst nach dem ersten leichten Frost noch wächst.',
+        'Belize', 'Belize', '🇧🇿', 'Belmopan', 'Berühmt für das gigantische „Great Blue Hole“ im zweitgrößten Korallenriff der Welt.',
+        'B2', 'thrive', 'gedeihen / aufblühen', 'Wood blewits thrive in cool, leaf-rich autumn soil.', 'Wood blewits _____ in cool, leaf-rich autumn soil.', 'thrive', 'Ein wunderbares B2-Verb für Pflanzen, Tiere oder Ideen, die prächtig gedeihen!'
+      ],
+
+      // ==================== KAPITEL 10: SÜDSEE & SCHÄTZE DER WELT (91-100, B2) ====================
+      [91, 10,
+        'Tintenfischpilz', 'Devil\'s Fingers', 'Clathrus archeri', 'B', 'Ursprünglich aus Australien stammend, entfaltet er 4 bis 7 rote „Tentakel“ wie ein kleiner Oktopus am Waldboden.',
+        'Australien', 'Australia', '🇦🇺', 'Canberra', 'Berühmt für das Great Barrier Reef, den roten Uluru, Kängurus, Koalas und das Opernhaus von Sydney.',
+        'B2', 'unfold', 'sich entfalten', 'Four crimson arms slowly unfold from the white egg.', 'Four crimson arms slowly _____ from the white egg.', 'unfold', '„Unfold“ passt für Blütenblätter, Pilze – und im übertragenen Sinn auch für Geschichten!'
+      ],
+      [92, 10,
+        'Himmelblauer Rötling', 'Sky-Blue Mushroom', 'Entoloma hochstetteri', 'B', 'Dieser märchenhaft himmelblaue Pilz aus Neuseeland ist so berühmt, dass er auf dem 50-Dollar-Schein abgebildet ist!',
+        'Neuseeland', 'New Zealand', '🇳🇿', 'Wellington', 'Das „Land der langen weißen Wolke“ mit Fjorden, Vulkanen, Kiwis und der Māori-Kultur.',
+        'B2', 'iconic', 'ikonisch / sinnbildlich', 'This sky-blue mushroom is an iconic symbol of New Zealand.', 'This sky-blue mushroom is an _____ symbol of New Zealand.', 'iconic', 'Wird für Dinge verwendet, die sofort wiedererkannt werden und berühmt sind.'
+      ],
+      [93, 10,
+        'Anemonenpilz', 'Anemone Stinkhorn', 'Aseroe rubra', 'B', 'Sieht aus wie eine rote Seeanemone aus dem Ozean, wächst aber auf dem Waldboden Australiens und Ozeaniens.',
+        'Fidschi', 'Fiji', '🇫🇯', 'Suva', 'Ein Südsee-Archipel aus über 300 Inseln, bekannt für herzliche „Bula!“-Begrüßungen und bunte Korallen.',
+        'B2', 'resemble', 'ähneln / gleichen', 'Its bright red petals closely resemble a sea anemone.', 'Its bright red petals closely _____ a sea anemone.', 'resemble', 'Wichtig auf B2: „resemble“ steht OHNE „to“! (resemble a flower, nicht resemble to).'
+      ],
+      [94, 10,
+        'Geisterpilz', 'Ghost Fungus', 'Omphalotus nidiformis', 'G', 'Tagsüber cremeweiß und unscheinbar, leuchtet er nachts in Australiens Wäldern gespenstisch grünlich!',
+        'Samoa', 'Samoa', '🇼🇸', 'Apia', 'Berühmt für tropische Wasserfälle, das natürliche Felsenbecken To Sua Ocean Trench und alte Südsee-Traditionen.',
+        'B2', 'phenomenon', 'Phänomen', 'Bioluminescence is a breathtaking natural phenomenon.', 'Bioluminescence is a breathtaking natural _____.', 'phenomenon', 'Achtung Plural (aus dem Griechischen): „phenomena“ (nicht phenomenons!).'
+      ],
+      [95, 10,
+        'Orangeroter Porenhelmling', 'Orange Pore Fungus', 'Favolaschia calocera', 'B', 'Winzig, leuchtend orange und mit wabenförmigen Poren unter dem Hut – ursprünglich aus Madagaskar.',
+        'Papua-Neuguinea', 'Papua New Guinea', '🇵🇬', 'Port Moresby', 'Heimat bunter Paradiesvögel, dichter Bergregenwälder und über 800 gesprochener Sprachen.',
+        'B2', 'widespread', 'weit verbreitet', 'Originally rare, this tiny orange fungus is now widespread.', 'Originally rare, this tiny orange fungus is now _____.', 'widespread', 'Zusammengesetzt aus „wide“ (weit) + „spread“ (verbreitet).'
+      ],
+      [96, 10,
+        'Tiegel-Teuerling', 'White-Egg Bird\'s Nest', 'Crucibulum laeve', 'B', 'Ein winziges, mit einem gelben Deckel verschlossenes Töpfchen, das sich bei Reife öffnet und „Sporen-Eier“ zeigt.',
+        'Madagaskar', 'Madagascar', '🇲🇬', 'Antananarivo', 'Die viertgrößte Insel der Welt, berühmt für Lemuren, Chamäleons und die imposante Baobab-Allee.',
+        'B2', 'ingenious', 'genial / einfallsreich', 'Nature invents ingenious ways to disperse tiny seeds and spores.', 'Nature invents _____ ways to disperse tiny seeds and spores.', 'ingenious', '„Disperse“ = verstreuen; „ingenious“ = äußerst einfallsreich.'
+      ],
+      [97, 10,
+        'Dickschaliger Kartoffelbovist', 'Common Earthball', 'Scleroderma citrinum', 'G', 'Außen sieht er aus wie eine raue gelbe Kartoffel, innen ist er aber schon früh tief violettschwarz und giftig.',
+        'Mauritius', 'Mauritius', '🇲🇺', 'Port Louis', 'Eine tropische Vulkaninsel im Indischen Ozean, bekannt für die „Siebenfarbige Erde“ und bunte Lagunen.',
+        'B2', 'misleading', 'irreführend', 'Its harmless potato-like look can be very misleading.', 'Its harmless potato-like look can be very _____.', 'misleading', 'Kommt von „mislead“ (in die Irre führen) – super für B2-Beschreibungen!'
+      ],
+      [98, 10,
+        'Hahnenkamm-Koralle', 'Clustered Coral', 'Ramaria botrytis', 'E', 'Sieht aus wie ein prächtiges rosa-weißes Korallenriff mitten im Laubwald – jung sogar ein guter Speisepilz.',
+        'Seychellen', 'Seychelles', '🇸🇨', 'Victoria', 'Bekannt für riesige glatte Granitfelsen an Traumstränden, Riesenschildkröten und die seltene Coco-de-Mer-Palme.',
+        'B2', 'resemble a coral', 'an eine Koralle erinnern', 'With its pink tips, this fungus forms an extraordinary sculpture.', 'With its pink tips, this fungus forms an _____ sculpture.', 'extraordinary', 'Extra + ordinary = außergewöhnlich! Das erste „a“ wird kaum mitgesprochen.'
+      ],
+      [99, 10,
+        'Amethystfarbene Wiesenkoralle', 'Violet Coral', 'Clavaria zollingeri', 'B', 'Eine zarte, verzweigte Koralle in traumhaftem Amethyst-Violett, die nur auf sehr gesunden Böden gedeiht.',
+        'Kap Verde', 'Cape Verde', '🇨🇻', 'Praia', 'Eine sonnige Inselgruppe im Atlantik mit Vulkanlandschaften, Musik (Morna) und endlosen Sandstränden.',
+        'B2', 'preserve', 'bewahren / erhalten', 'We must preserve natural meadows so rare fungi can survive.', 'We must _____ natural meadows so rare fungi can survive.', 'preserve', '„Preserve“ = langfristig schützen und bewahren.'
+      ],
+      [100, 10,
+        'Orangeroter Adernseitling', 'Wrinkled Peach', 'Rhodotus palmatus', 'B', 'Einer der märchenhaftesten Pilze der Erde: Sein zart lachsfarbener Hut trägt ein erhabenes Netz wie aus Porzellan!',
+        'Slowakei', 'Slovakia', '🇸🇰', 'Bratislava', 'Berühmt für die Hohe Tatra, über 100 mittelalterliche Burgen und eine der ältesten Naturwälder Europas.',
+        'B2', 'accomplishment', 'Leistung / Errungenschaft', 'Completing all 100 explorer levels is a wonderful accomplishment!', 'Completing all 100 explorer levels is a wonderful _____!', 'accomplishment', 'Herzlichen Glückwunsch zu Level 100! „Accomplishment“ = große Leistung!'
+      ]
+    ];
+
+    // Normalize level 98 cleanly so target word & answer match seamlessly
+    RAW_LEVELS[97][13] = 'extraordinary';
+    RAW_LEVELS[97][14] = 'außergewöhnlich';
+
+    // Convert compact tuples into clean structured objects
+    const LEVELS = RAW_LEVELS.map(r => ({
+      id: r[0],
+      chapter: r[1],
+      mushroom: {
+        de: r[2],
+        en: r[3],
+        latin: r[4],
+        category: CAT_MAP[r[5]],
+        fact: r[6]
+      },
+      country: {
+        de: r[7],
+        en: r[8],
+        flag: r[9],
+        capital: r[10],
+        fact: r[11]
+      },
+      english: {
+        cefr: r[12],
+        word: r[13],
+        de: r[14],
+        sentence: r[15],
+        blank: r[16],
+        answer: r[17],
+        tip: r[18]
+      }
+    }));
+
+    /* =========================================================================
+       3. STATE & PERSISTENCE (localStorage)
+       ========================================================================= */
+    const STORAGE_KEY = 'sporeExplorer_save_v1';
+    const PHOTO_CACHE_KEY = 'sporeExplorer_photoCache_v1';
+
+    const DEFAULT_STATE = {
+      unlockedLevel: 1,
+      stars: {},        // { [levelId]: 1|2|3 }
+      streak: 0,
+      bestStreak: 0,
+      xp: 0,
+      muted: false,
+      explorerMode: false,
+      activeChapter: 1
+    };
+
+    let state = loadState();
+    let currentTab = 'map';
+    let herbariumFilter = 'Alle';
+    let vocabFilter = 'Alle';
+    let activeLevelSession = null;
+    let trainerState = { score: 0, streak: 0, currentQ: null, answered: false };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return { ...DEFAULT_STATE };
+        const parsed = JSON.parse(raw);
+        return { ...DEFAULT_STATE, ...parsed, stars: parsed.stars || {} };
+      } catch (e) {
+        return { ...DEFAULT_STATE };
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        // Ignore storage quota errors gracefully
+      }
+    }
+
+    function isLevelUnlocked(levelId) {
+      return state.explorerMode || levelId <= state.unlockedLevel;
+    }
+
+    function isLevelDiscovered(levelId) {
+      return state.explorerMode || Boolean(state.stars[levelId]) || levelId <= state.unlockedLevel;
+    }
+
+    /* =========================================================================
+       4. REAL AUTHENTIC MUSHROOM PHOTO LOADER (Wikipedia & Wikimedia Commons)
+       ========================================================================= */
+    const photoMemCache = new Map();
+    const photoInFlight = new Map();
+
+    // Load cached URLs from localStorage
+    (function initPhotoCache() {
+      try {
+        const saved = localStorage.getItem(PHOTO_CACHE_KEY);
+        if (saved) {
+          const obj = JSON.parse(saved);
+          Object.entries(obj).forEach(([k, v]) => photoMemCache.set(k, v));
+        }
+      } catch (e) {}
+    })();
+
+    function persistPhotoCache() {
+      try {
+        const obj = {};
+        photoMemCache.forEach((v, k) => {
+          if (v) obj[k] = v;
+        });
+        localStorage.setItem(PHOTO_CACHE_KEY, JSON.stringify(obj));
+      } catch (e) {}
+    }
+
+    /**
+     * Fetches an authentic real photograph for a mushroom species using its
+     * scientific Latin name via public CORS-enabled Wikipedia & Wikimedia APIs.
+     */
+    async function fetchMushroomPhoto(latinName) {
+      if (photoMemCache.has(latinName)) {
+        return photoMemCache.get(latinName);
+      }
+      if (photoInFlight.has(latinName)) {
+        return photoInFlight.get(latinName);
+      }
+
+      const promise = (async () => {
+        const slug = encodeURIComponent(latinName.trim().replace(/ /g, '_'));
+        const isGoodImg = (url) => {
+          if (!url || typeof url !== 'string') return false;
+          const lower = url.toLowerCase();
+          return !lower.endsWith('.svg') && !lower.includes('flag_of') && !lower.includes('map');
+        };
+
+        // 1. Try English Wikipedia REST summary API
+        try {
+          const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`);
+          if (res.ok) {
+            const data = await res.json();
+            const candidate = data?.thumbnail?.source || data?.originalimage?.source;
+            if (isGoodImg(candidate)) {
+              photoMemCache.set(latinName, candidate);
+              persistPhotoCache();
+              return candidate;
+            }
+          }
+        } catch (e) {}
+
+        // 2. Try German Wikipedia REST summary API
+        try {
+          const res = await fetch(`https://de.wikipedia.org/api/rest_v1/page/summary/${slug}`);
+          if (res.ok) {
+            const data = await res.json();
+            const candidate = data?.thumbnail?.source || data?.originalimage?.source;
+            if (isGoodImg(candidate)) {
+              photoMemCache.set(latinName, candidate);
+              persistPhotoCache();
+              return candidate;
+            }
+          }
+        } catch (e) {}
+
+        // 3. Fallback: Wikimedia Commons API search
+        try {
+          const q = encodeURIComponent(`${latinName} filetype:bitmap`);
+          const url = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrsearch=${q}&gsrlimit=3&prop=imageinfo&iiprop=url&iiurlwidth=640&format=json&origin=*`;
+          const res = await fetch(url);
+          if (res.ok) {
+            const data = await res.json();
+            const pages = data?.query?.pages ? Object.values(data.query.pages) : [];
+            for (const p of pages) {
+              const info = p?.imageinfo?.[0];
+              const candidate = info?.thumburl || info?.url;
+              if (isGoodImg(candidate)) {
+                photoMemCache.set(latinName, candidate);
+                persistPhotoCache();
+                return candidate;
+              }
+            }
+          }
+        } catch (e) {}
+
+        photoMemCache.set(latinName, null);
+        return null;
+      })();
+
+      photoInFlight.set(latinName, promise);
+      const result = await promise;
+      photoInFlight.delete(latinName);
+      return result;
+    }
+
+    /**
+     * Generates a charming offline fallback SVG mushroom illustration.
+     */
+    function getFallbackMushroomSVG(category) {
+      const capColor = category === 'Giftig' ? '#D95D48'
+        : category === 'Heil- & Vitalpilz' ? '#8B62A8'
+        : category === 'Essbar' ? '#C9893B'
+        : '#5A948A';
+      return `
+        <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#F5EFE2] to-[#E8F0E2] p-4 text-center">
+          <svg viewBox="0 0 120 100" class="w-24 h-20 mb-1.5 drop-shadow-sm">
+            <ellipse cx="60" cy="86" rx="34" ry="8" fill="#C9D8BD"/>
+            <path d="M46 52 C46 72, 44 82, 60 82 C76 82, 74 72, 74 52 Z" fill="#FFF7E6" stroke="#2D3A30" stroke-width="3"/>
+            <path d="M18 54 C18 22, 40 12, 60 12 C80 12, 102 22, 102 54 C84 60, 36 60, 18 54 Z" fill="${capColor}" stroke="#2D3A30" stroke-width="3"/>
+            <circle cx="42" cy="34" r="6" fill="#FFF7E6" opacity="0.85"/>
+            <circle cx="68" cy="26" r="5" fill="#FFF7E6" opacity="0.85"/>
+            <circle cx="80" cy="42" r="4.5" fill="#FFF7E6" opacity="0.85"/>
+          </svg>
+          <span class="text-[11px] font-bold text-barkSoft">Illustration (Offline-Ansicht)</span>
+        </div>
+      `;
+    }
+
+    /**
+     * Renders an image container and asynchronously loads the authentic mushroom photo.
+     */
+    function hydrateMushroomPhoto(containerEl, latinName, altText, category) {
+      if (!containerEl) return;
+      containerEl.innerHTML = `
+        <div class="w-full h-full photo-skeleton flex flex-col items-center justify-center gap-1.5 text-barkSoft">
+          <span class="text-2xl animate-bounce">🍄</span>
+          <span class="text-xs font-bold">Echtes Foto wird geladen…</span>
+        </div>
+      `;
+
+      fetchMushroomPhoto(latinName).then(url => {
+        if (!document.body.contains(containerEl)) return;
+        if (!url) {
+          containerEl.innerHTML = getFallbackMushroomSVG(category);
+          return;
+        }
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = altText;
+        img.loading = 'lazy';
+        img.className = 'w-full h-full object-cover transition-opacity duration-300 opacity-0';
+        img.onload = () => { img.classList.remove('opacity-0'); };
+        img.onerror = () => { containerEl.innerHTML = getFallbackMushroomSVG(category); };
+
+        containerEl.innerHTML = '';
+        containerEl.appendChild(img);
+
+        const credit = document.createElement('div');
+        credit.className = 'absolute bottom-2 right-2 bg-bark/70 backdrop-blur-sm text-cream text-[10px] font-bold px-2 py-0.5 rounded-full pointer-events-none';
+        credit.textContent = '📷 Echtes Foto via Wikimedia Commons';
+        containerEl.appendChild(credit);
+      });
+    }
+
+    // IntersectionObserver for smooth lazy-loading in the 100-item Herbarium gallery
+    let photoObserver = null;
+    function setupLazyPhotoObserver() {
+      if (photoObserver) photoObserver.disconnect();
+      photoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            photoObserver.unobserve(el);
+            hydrateMushroomPhoto(el, el.dataset.latin, el.dataset.alt, el.dataset.cat);
+          }
+        });
+      }, { rootMargin: '140px' });
+    }
+
+    /* =========================================================================
+       5. CUTE SVG MASCOT "PIP" + SOUND + SPEECH SYNTHESIS
+       ========================================================================= */
+    function getPipSVG(mood = 'happy', sizeClass = 'w-24 h-24') {
+      let face = `
+        <circle cx="42" cy="64" r="3.4" fill="#2D3A30"/>
+        <circle cx="58" cy="64" r="3.4" fill="#2D3A30"/>
+        <circle cx="43.2" cy="62.8" r="1.1" fill="#FFF"/>
+        <circle cx="59.2" cy="62.8" r="1.1" fill="#FFF"/>
+        <circle cx="35.5" cy="68.5" r="3.2" fill="#F29E8E" opacity="0.75"/>
+        <circle cx="64.5" cy="68.5" r="3.2" fill="#F29E8E" opacity="0.75"/>
+        <path d="M46 69 Q50 73.5 54 69" fill="none" stroke="#2D3A30" stroke-width="2.6" stroke-linecap="round"/>
+      `;
+      if (mood === 'cheer') {
+        face = `
+          <path d="M38 64 Q42 59 46 64" fill="none" stroke="#2D3A30" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M54 64 Q58 59 62 64" fill="none" stroke="#2D3A30" stroke-width="2.8" stroke-linecap="round"/>
+          <circle cx="35" cy="68.5" r="3.6" fill="#F29E8E" opacity="0.85"/>
+          <circle cx="65" cy="68.5" r="3.6" fill="#F29E8E" opacity="0.85"/>
+          <path d="M44 68 Q50 77 56 68 Z" fill="#D95D48" stroke="#2D3A30" stroke-width="2.2" stroke-linejoin="round"/>
+        `;
+      } else if (mood === 'encourage') {
+        face = `
+          <circle cx="42" cy="64" r="3.2" fill="#2D3A30"/>
+          <circle cx="58" cy="64" r="3.2" fill="#2D3A30"/>
+          <circle cx="36" cy="68.5" r="3" fill="#F29E8E" opacity="0.65"/>
+          <circle cx="64" cy="68.5" r="3" fill="#F29E8E" opacity="0.65"/>
+          <path d="M46.5 70 Q50 68.5 53.5 70" fill="none" stroke="#2D3A30" stroke-width="2.4" stroke-linecap="round"/>
+        `;
+      }
+
+      return `
+        <svg viewBox="0 0 100 100" class="${sizeClass}" aria-label="Pilz-Maskottchen Pip">
+          <!-- Shadow -->
+          <ellipse cx="50" cy="89" rx="26" ry="7" fill="#D2DEC7"/>
+          <!-- Explorer Satchel Strap & Bag -->
+          <path d="M35 76 L68 58" stroke="#8C5A32" stroke-width="4" stroke-linecap="round"/>
+          <!-- Cute Stem Body -->
+          <path d="M33 50 C33 74, 34 86, 50 86 C66 86, 67 74, 67 50 Z" fill="#FFF7E6" stroke="#2D3A30" stroke-width="3.2"/>
+          <!-- Tiny Satchel Pouch -->
+          <rect x="61" y="69" width="12" height="10" rx="3" fill="#C98A42" stroke="#2D3A30" stroke-width="2.4"/>
+          <path d="M61 72 L73 72" stroke="#2D3A30" stroke-width="2"/>
+          <!-- Little Arms -->
+          <path d="M33 65 Q24 68 27 74" fill="none" stroke="#2D3A30" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M67 65 Q77 61 75 55" fill="none" stroke="#2D3A30" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- Toadstool Cap -->
+          <path d="M14 51 C14 20, 34 11, 50 11 C66 11, 86 20, 86 51 C72 56, 28 56, 14 51 Z" fill="#D95D48" stroke="#2D3A30" stroke-width="3.2"/>
+          <!-- Cute Leaf on Cap -->
+          <path d="M58 14 C65 4, 78 6, 76 16 C70 20, 62 19, 58 14 Z" fill="#5E9A6F" stroke="#2D3A30" stroke-width="2.5"/>
+          <!-- Cap Spots -->
+          <circle cx="34" cy="30" r="6" fill="#FFF7E6"/>
+          <circle cx="53" cy="23" r="4.8" fill="#FFF7E6"/>
+          <circle cx="71" cy="36" r="5" fill="#FFF7E6"/>
+          <circle cx="24" cy="42" r="3.5" fill="#FFF7E6"/>
+          <!-- Face -->
+          ${face}
+        </svg>
+      `;
+    }
+
+    // Gentle synthesized Web Audio chimes (no external audio URLs)
+    let audioCtx = null;
+    function playChime(type = 'good') {
+      if (state.muted) return;
+      try {
+        if (!audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+
+        const playTone = (freq, startOffset, duration, vol = 0.12) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + startOffset);
+          gain.gain.setValueAtTime(0.001, now + startOffset);
+          gain.gain.exponentialRampToValueAtTime(vol, now + startOffset + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + startOffset + duration);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + startOffset);
+          osc.stop(now + startOffset + duration + 0.02);
+        };
+
+        if (type === 'good') {
+          playTone(523.25, 0, 0.18, 0.11);    // C5
+          playTone(659.25, 0.09, 0.24, 0.12); // E5
+        } else if (type === 'wrong') {
+          playTone(329.63, 0, 0.16, 0.09);    // E4
+          playTone(293.66, 0.11, 0.22, 0.08); // D4
+        } else if (type === 'win') {
+          playTone(523.25, 0, 0.18, 0.11);
+          playTone(659.25, 0.10, 0.18, 0.11);
+          playTone(783.99, 0.20, 0.22, 0.12);
+          playTone(1046.5, 0.32, 0.42, 0.13);
+        }
+      } catch (e) {}
+    }
+
+    // English Pronunciation via Web Speech API
+    function speakEnglish(text) {
+      try {
+        if (!('speechSynthesis' in window)) {
+          showToast('Sprachausgabe wird von diesem Browser leider nicht unterstützt.');
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-GB';
+        utter.rate = 0.92;
+        const voices = window.speechSynthesis.getVoices();
+        const preferred = voices.find(v => v.lang.startsWith('en-GB')) || voices.find(v => v.lang.startsWith('en-US')) || voices.find(v => v.lang.startsWith('en'));
+        if (preferred) utter.voice = preferred;
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
+    // Toast feedback helper (replaces alert completely)
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.add('hidden'), 2600);
+    }
+
+    // Celebration Spore Confetti
+    function triggerSporeConfetti() {
+      const container = document.getElementById('confetti-container');
+      container.innerHTML = '';
+      const symbols = ['🍄', '⭐', '🌿', '✨', '🌸', '🍃'];
+      for (let i = 0; i < 34; i++) {
+        const span = document.createElement('span');
+        span.className = 'confetti-piece text-xl sm:text-2xl';
+        span.textContent = symbols[i % symbols.length];
+        span.style.left = `${Math.random() * 96 + 2}%`;
+        span.style.animationDelay = `${Math.random() * 0.65}s`;
+        span.style.animationDuration = `${1.9 + Math.random() * 1.1}s`;
+        container.appendChild(span);
+      }
+      setTimeout(() => { container.innerHTML = ''; }, 3400);
+    }
+
+    /* =========================================================================
+       6. CATEGORY & CEFR STYLING HELPERS
+       ========================================================================= */
+    function getCategoryBadgeHTML(category) {
+      if (category === 'Essbar') {
+        return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-[#E4F3E8] text-[#28643B] border border-[#9FD0AE]">🥗 Essbar</span>`;
+      }
+      if (category === 'Giftig') {
+        return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-[#FCE7E4] text-[#A43121] border border-[#EBA69B]">☠️ Giftig</span>`;
+      }
+      if (category === 'Heil- & Vitalpilz') {
+        return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-[#F1E8F7] text-[#633D80] border border-[#C9AEE0]">✨ Heil- & Vitalpilz</span>`;
+      }
+      return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-[#FEF3DC] text-[#8E5B08] border border-[#ECC97F]">🔮 Besonderheit</span>`;
+    }
+
+    function getCefrBadgeHTML(cefr) {
+      const colors = {
+        'A2': 'bg-[#E5F4E8] text-[#2B663D]',
+        'A2+': 'bg-[#E2F2F0] text-[#1E615B]',
+        'B1': 'bg-[#FEF2D6] text-[#8C5B08]',
+        'B1+': 'bg-[#FCEAD9] text-[#9A4B12]',
+        'B2': 'bg-[#F0E6FA] text-[#613485]'
+      };
+      return `<span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-extrabold ${colors[cefr] || 'bg-sageLight text-mossDark'}">Englisch ${cefr}</span>`;
+    }
+
+    function getStarsHTML(count) {
+      return [1, 2, 3].map(i => `<span class="${i <= count ? 'opacity-100' : 'opacity-25 grayscale'}">⭐</span>`).join('');
+    }
+
+    /* =========================================================================
+       7. UI NAVIGATION & HEADER STATS
+       ========================================================================= */
+    function updateHeaderStats() {
+      const totalStars = Object.values(state.stars).reduce((a, b) => a + b, 0);
+      const completedCount = Object.keys(state.stars).length;
+
+      document.getElementById('stat-stars').textContent = totalStars;
+      document.getElementById('stat-completed').textContent = completedCount;
+      document.getElementById('stat-streak').textContent = state.streak;
+
+      // Mute button
+      document.getElementById('btn-mute').textContent = state.muted ? '🔇' : '🔊';
+
+      // Explorer mode button
+      const expBtn = document.getElementById('btn-explorer-toggle');
+      const expIcon = document.getElementById('explorer-icon');
+      const expLabel = document.getElementById('explorer-label');
+      const mapHintIcon = document.getElementById('map-explorer-hint-icon');
+      const mapHintText = document.getElementById('map-explorer-hint-text');
+
+      if (state.explorerMode) {
+        expBtn.className = 'btn-cozy flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold border-2 bg-honeyLight border-honey text-[#7A5207]';
+        expIcon.textContent = '🔓';
+        expLabel.textContent = 'Entdecker: AN';
+        if (mapHintIcon) mapHintIcon.textContent = '🔒';
+        if (mapHintText) mapHintText.textContent = 'Entdecker-Modus aktiv (Alle 100 frei)';
+      } else {
+        expBtn.className = 'btn-cozy flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold border-2 bg-white border-[#DFD4BF] text-bark hover:border-sage';
+        expIcon.textContent = '🔒';
+        expLabel.textContent = 'Entdecker-Modus';
+        if (mapHintIcon) mapHintIcon.textContent = '🔓';
+        if (mapHintText) mapHintText.textContent = 'Alle 100 Level freischalten';
+      }
+
+      // Next playable level button text
+      const nextLvl = Math.min(100, state.unlockedLevel);
+      const nextBtnText = document.getElementById('btn-next-level-text');
+      if (nextBtnText) {
+        nextBtnText.textContent = completedCount >= 100
+          ? 'Alle 100 Level gemeistert! 🎉'
+          : `Level ${nextLvl} spielen (${LEVELS[nextLvl - 1].country.flag})`;
+      }
+
+      // Update Settings modal buttons if visible
+      const sExp = document.getElementById('settings-explorer-btn');
+      const sMute = document.getElementById('settings-mute-btn');
+      if (sExp) {
+        sExp.textContent = state.explorerMode ? 'AN (Alle 100 frei)' : 'AUS (Der Reihe nach)';
+        sExp.className = state.explorerMode
+          ? 'px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-honeyLight text-[#7A5207] border border-honey'
+          : 'px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-parchment text-bark border border-[#D8CBB3]';
+      }
+      if (sMute) {
+        sMute.textContent = state.muted ? 'Stumm 🔇' : 'Aktiv 🔊';
+        sMute.className = state.muted
+          ? 'px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-parchment text-barkSoft'
+          : 'px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-sageLight text-mossDark';
+      }
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      ['map', 'herbarium', 'passport', 'vocab', 'level'].forEach(id => {
+        document.getElementById(`view-${id}`).classList.toggle('hidden', id !== tab);
+      });
+
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        const active = btn.dataset.tab === tab;
+        btn.className = active
+          ? 'nav-tab btn-cozy flex-shrink-0 flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-moss text-white shadow-sm'
+          : 'nav-tab btn-cozy flex-shrink-0 flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-bark border-2 border-[#E5DAC6] hover:border-sage';
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (tab === 'map') renderMap();
+      if (tab === 'herbarium') renderHerbarium();
+      if (tab === 'passport') renderPassport();
+      if (tab === 'vocab') renderVocab();
+    }
+
+    function toggleExplorerMode() {
+      state.explorerMode = !state.explorerMode;
+      saveState();
+      updateHeaderStats();
+      showToast(state.explorerMode
+        ? '🔓 Entdecker-Modus AN: Alle 100 Level, Pilze & Länder sind jetzt frei!'
+        : '🔒 Entdecker-Modus AUS: Du spielst wieder der Reihe nach.');
+      if (currentTab === 'map') renderMap();
+      if (currentTab === 'herbarium') renderHerbarium();
+      if (currentTab === 'passport') renderPassport();
+      if (currentTab === 'vocab') renderVocab();
+    }
+
+    function toggleMute() {
+      state.muted = !state.muted;
+      saveState();
+      updateHeaderStats();
+      if (!state.muted) playChime('good');
+    }
+
+    /* =========================================================================
+       8. TAB 1: WELTKARTE (10 CHAPTERS & 100 LEVELS)
+       ========================================================================= */
+    function selectChapter(chapterId) {
+      state.activeChapter = chapterId;
+      saveState();
+      renderMap();
+    }
+
+    function playNextLevel() {
+      const nextLvl = Math.min(100, state.unlockedLevel);
+      startLevel(nextLvl);
+    }
+
+    function renderMap() {
+      document.getElementById('map-pip-container').innerHTML = getPipSVG('happy', 'w-24 h-24 sm:w-28 sm:h-28');
+
+      // Render 10 Chapter selector cards
+      const chapterTabsEl = document.getElementById('chapter-tabs');
+      chapterTabsEl.innerHTML = CHAPTERS.map(ch => {
+        const chLevels = LEVELS.filter(l => l.chapter === ch.id);
+        const done = chLevels.filter(l => state.stars[l.id]).length;
+        const isActive = state.activeChapter === ch.id;
+        return `
+          <button onclick="selectChapter(${ch.id})"
+            class="btn-cozy text-left p-2.5 sm:p-3 rounded-2xl border-2 transition-all ${
+              isActive
+                ? 'bg-moss text-white border-mossDark shadow-md'
+                : 'bg-white text-bark border-[#E5DAC6] hover:border-sage'
+            }">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-lg">${ch.icon}</span>
+              <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
+                isActive ? 'bg-white/20 text-white' : 'bg-parchment text-barkSoft'
+              }">${done}/10</span>
+            </div>
+            <div class="font-display font-bold text-xs sm:text-sm leading-tight truncate">Kap. ${ch.id}: ${ch.title}</div>
+            <div class="text-[10px] font-bold mt-0.5 ${isActive ? 'text-white/85' : 'text-barkSoft'}">${ch.cefr}</div>
+          </button>
+        `;
+      }).join('');
+
+      // Active chapter details
+      const activeCh = CHAPTERS.find(c => c.id === state.activeChapter) || CHAPTERS[0];
+      const chLevels = LEVELS.filter(l => l.chapter === activeCh.id);
+      const chDone = chLevels.filter(l => state.stars[l.id]).length;
+
+      document.getElementById('active-chapter-badge').textContent = `Kapitel ${activeCh.id} · Level ${(activeCh.id - 1) * 10 + 1}–${activeCh.id * 10} · Niveau ${activeCh.cefr}`;
+      document.getElementById('active-chapter-title').textContent = `${activeCh.icon} ${activeCh.title}`;
+      document.getElementById('active-chapter-desc').textContent = activeCh.desc;
+      document.getElementById('active-chapter-progress').textContent = `⭐ ${chDone} / 10 abgeschlossen`;
+
+      // Render 10 level path cards
+      const grid = document.getElementById('level-grid');
+      grid.innerHTML = chLevels.map(lvl => {
+        const unlocked = isLevelUnlocked(lvl.id);
+        const stars = state.stars[lvl.id] || 0;
+        const isCurrent = !state.explorerMode && lvl.id === state.unlockedLevel && !stars;
+
+        return `
+          <button onclick="${unlocked ? `startLevel(${lvl.id})` : `showToast('🔒 Schließe zuerst Level ${lvl.id - 1} ab – oder schalte den Entdecker-Modus ein!')`}"
+            class="btn-cozy w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 flex items-center gap-3.5 transition-all relative ${
+              unlocked
+                ? (isCurrent
+                    ? 'bg-gradient-to-r from-[#FFF8EE] to-[#FDF2E3] border-toadstool node-current'
+                    : stars > 0
+                      ? 'bg-gradient-to-r from-[#F6FBF4] to-[#FFFDF9] border-sage hover:border-moss'
+                      : 'bg-white border-[#E5DAC6] hover:border-moss')
+                : 'bg-[#F4EFE4] border-[#E4DAC7] opacity-75 cursor-not-allowed'
+            }">
+            <!-- Level Number Circle -->
+            <div class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl flex flex-col items-center justify-center font-display font-bold border-2 ${
+              unlocked
+                ? (stars > 0 ? 'bg-moss text-white border-mossDark' : isCurrent ? 'bg-toadstool text-white border-toadstoolDark' : 'bg-sageLight text-mossDark border-sage')
+                : 'bg-[#E5DCCB] text-barkSoft border-[#D2C6B0]'
+            }">
+              <span class="text-[10px] uppercase leading-none opacity-85">Lvl</span>
+              <span class="text-lg sm:text-xl leading-none">${lvl.id}</span>
+            </div>
+
+            <!-- Info -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-lg leading-none">${lvl.country.flag}</span>
+                <span class="font-display font-bold text-sm sm:text-base text-bark truncate">${lvl.country.de}</span>
+                ${getCefrBadgeHTML(lvl.english.cefr)}
+              </div>
+              <div class="text-xs font-bold text-mossDark truncate mt-0.5">
+                🍄 ${lvl.mushroom.de} <span class="text-barkSoft font-semibold italic">(${lvl.mushroom.en})</span>
+              </div>
+              <div class="text-xs font-semibold text-barkSoft truncate mt-0.5">
+                🇬🇧 <span class="text-bark font-bold">${lvl.english.word}</span> · ${lvl.english.de}
+              </div>
+            </div>
+
+            <!-- Right Status -->
+            <div class="flex-shrink-0 flex flex-col items-end gap-1">
+              ${unlocked
+                ? `<div class="text-xs sm:text-sm tracking-tight">${getStarsHTML(stars)}</div>
+                   <span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full ${
+                     stars > 0 ? 'bg-sageLight text-mossDark' : 'bg-toadstool text-white'
+                   }">${stars > 0 ? 'Spielen' : 'Start ▶'}</span>`
+                : `<span class="text-xl">🔒</span>`
+              }
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    /* =========================================================================
+       9. LEVEL GAMEPLAY FLOW (DISCOVERY -> 4-QUESTION QUIZ -> CELEBRATION)
+       ========================================================================= */
+    function startLevel(levelId) {
+      const level = LEVELS.find(l => l.id === levelId);
+      if (!level) return;
+
+      activeLevelSession = {
+        level,
+        phase: 'discovery',
+        questions: buildLevelQuestions(level),
+        qIndex: 0,
+        score: 0,
+        answered: false
+      };
+
+      switchTab('level');
+      renderLevelView();
+    }
+
+    /**
+     * Helper: pick N unique distractor items from LEVELS excluding current level
+     */
+    function pickDistractors(level, count, extractor, preferNearby = true) {
+      const correctVal = extractor(level);
+      let pool = LEVELS.filter(l => l.id !== level.id && extractor(l) !== correctVal);
+      if (preferNearby) {
+        const nearby = pool.filter(l => Math.abs(l.id - level.id) <= 18);
+        if (nearby.length >= count) pool = nearby;
+      }
+      // Shuffle pool
+      const shuffled = [...pool].sort(() => Math.random() - 0.5);
+      const uniqueVals = [];
+      for (const item of shuffled) {
+        const val = extractor(item);
+        if (!uniqueVals.includes(val)) uniqueVals.push(val);
+        if (uniqueVals.length === count) break;
+      }
+      return uniqueVals;
+    }
+
+    function shuffleArray(arr) {
+      return [...arr].sort(() => Math.random() - 0.5);
+    }
+
+    /**
+     * Generates 4 varied, smart questions for a level:
+     * Q1: English Vocabulary (EN <-> DE)
+     * Q2: English in Context (Cloze / Lückentext)
+     * Q3: Country & Capital / Famous Fact
+     * Q4: Real Mushroom Photo Recognition
+     */
+    function buildLevelQuestions(level) {
+      const askEnToDe = level.id % 2 === 1;
+      const q1Options = askEnToDe
+        ? shuffleArray([level.english.de, ...pickDistractors(level, 3, l => l.english.de, true)])
+        : shuffleArray([level.english.word, ...pickDistractors(level, 3, l => l.english.word, true)]);
+
+      const q1 = {
+        type: 'vocab',
+        badge: `🇬🇧 Englisch-Vokabel (${level.english.cefr})`,
+        prompt: askEnToDe
+          ? `Was bedeutet „${level.english.word}“ auf Deutsch?`
+          : `Wie heißt „${level.english.de}“ auf Englisch?`,
+        audioText: askEnToDe ? level.english.word : null,
+        afterAudioText: level.english.word,
+        options: q1Options,
+        correct: askEnToDe ? level.english.de : level.english.word,
+        explanation: `„${level.english.word}“ = ${level.english.de}. 💡 ${level.english.tip}`
+      };
+
+      const q2Options = shuffleArray([
+        level.english.answer,
+        ...pickDistractors(level, 3, l => l.english.answer, true)
+      ]);
+      const q2 = {
+        type: 'cloze',
+        badge: `✍️ Englisch im Satz (${level.english.cefr})`,
+        prompt: `Ergänze das passende englische Wort im Satz:`,
+        sentenceBlank: level.english.blank,
+        hintDe: `Gesucht: „${level.english.de}“`,
+        afterAudioText: level.english.sentence,
+        options: q2Options,
+        correct: level.english.answer,
+        explanation: `Vollständiger Satz: „${level.english.sentence}“`
+      };
+
+      const askCapital = level.id % 3 !== 0;
+      let q3;
+      if (askCapital) {
+        const capOptions = shuffleArray([
+          level.country.capital,
+          ...pickDistractors(level, 3, l => l.country.capital, false)
+        ]);
+        q3 = {
+          type: 'geo',
+          badge: '🌍 Länder & Hauptstädte',
+          prompt: `Wie heißt die Hauptstadt von ${level.country.flag} ${level.country.de} (${level.country.en})?`,
+          options: capOptions,
+          correct: level.country.capital,
+          explanation: `Die Hauptstadt von ${level.country.de} ist ${level.country.capital}! ${level.country.fact}`
+        };
+      } else {
+        const countryOptions = shuffleArray([
+          `${level.country.flag} ${level.country.de}`,
+          ...pickDistractors(level, 3, l => `${l.country.flag} ${l.country.de}`, false)
+        ]);
+        q3 = {
+          type: 'geo',
+          badge: '🌍 Weltwissen',
+          prompt: `Zu welchem Land (Hauptstadt: ${level.country.capital}) passt diese Besonderheit?`,
+          quote: level.country.fact,
+          options: countryOptions,
+          correct: `${level.country.flag} ${level.country.de}`,
+          explanation: `Das ist ${level.country.flag} ${level.country.de} (Englisch: ${level.country.en}) mit der Hauptstadt ${level.country.capital}!`
+        };
+      }
+
+      const mushOptions = shuffleArray([
+        level.mushroom.de,
+        ...pickDistractors(level, 3, l => l.mushroom.de, false)
+      ]);
+      const q4 = {
+        type: 'mushroom',
+        badge: '🍄 Pilz-Entdecker (Echtes Foto)',
+        prompt: `Erkennst du diesen Pilz auf dem echten Foto?`,
+        subHint: `Englisch: „${level.mushroom.en}“ · Kategorie: ${level.mushroom.category}`,
+        latin: level.mushroom.latin,
+        category: level.mushroom.category,
+        options: mushOptions,
+        correct: level.mushroom.de,
+        explanation: `Das ist der ${level.mushroom.de} (${level.mushroom.latin}). ${level.mushroom.fact}`
+      };
+
+      return [q1, q2, q3, q4];
+    }
+
+    function renderLevelView() {
+      const container = document.getElementById('view-level');
+      const sess = activeLevelSession;
+      if (!sess) return;
+
+      const { level, phase } = sess;
+      const chapter = CHAPTERS.find(c => c.id === level.chapter);
+
+      if (phase === 'discovery') {
+        const highlightedSentence = level.english.sentence.replace(
+          new RegExp(`(${level.english.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'i'),
+          '<span class="px-1.5 py-0.5 rounded-lg bg-honeyLight text-[#7A5207] font-extrabold">$1</span>'
+        );
+
+        container.innerHTML = `
+          <!-- Top Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <button onclick="switchTab('map')" class="btn-cozy btn-parchment px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5">
+              <span>←</span><span>Weltkarte</span>
+            </button>
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-parchment text-bark text-xs font-extrabold">
+                ${chapter.icon} Kapitel ${chapter.id} · Level ${level.id} / 100
+              </span>
+              ${getCefrBadgeHTML(level.english.cefr)}
+            </div>
+          </div>
+
+          <!-- Pip Intro Strip -->
+          <div class="card-botanical p-4 bg-gradient-to-r from-[#FFFDF9] to-[#EFF5EA] flex items-center gap-3.5">
+            <div class="flex-shrink-0">${getPipSVG('happy', 'w-16 h-16 sm:w-20 sm:h-20')}</div>
+            <div>
+              <h2 class="font-display text-xl sm:text-2xl font-bold text-bark">
+                Entdeckerkarte – Level ${level.id}
+              </h2>
+              <p class="text-xs sm:text-sm font-semibold text-barkSoft">
+                Schau dir den Pilz, das Reiseland und deine neue Englisch-Vokabel in Ruhe an – dann starten wir das 4-Fragen-Quiz!
+              </p>
+            </div>
+          </div>
+
+          <!-- Dual Discovery Cards: Mushroom & Country -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- 1. MUSHROOM CARD -->
+            <div class="card-botanical overflow-hidden flex flex-col">
+              <div id="discovery-mushroom-photo" class="relative h-56 sm:h-64 w-full bg-parchment overflow-hidden"></div>
+              <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-3">
+                <div>
+                  <div class="flex items-center justify-between gap-2 flex-wrap mb-1.5">
+                    <span class="text-xs font-extrabold uppercase tracking-wide text-moss">🍄 Pilz dieses Levels</span>
+                    ${getCategoryBadgeHTML(level.mushroom.category)}
+                  </div>
+                  <h3 class="font-display text-2xl font-bold text-bark">${level.mushroom.de}</h3>
+                  <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-bold text-barkSoft mt-0.5">
+                    <span>🇬🇧 ${level.mushroom.en}</span>
+                    <span>•</span>
+                    <span class="italic font-semibold">${level.mushroom.latin}</span>
+                  </div>
+                </div>
+                <p class="text-sm font-semibold text-bark bg-cream p-3 rounded-2xl border border-[#EAE0CE] leading-relaxed">
+                  ✨ ${level.mushroom.fact}
+                </p>
+              </div>
+            </div>
+
+            <!-- 2. COUNTRY POSTCARD -->
+            <div class="postcard-frame flex">
+              <div class="bg-[#FFFDF9] rounded-[1.25rem] p-4 sm:p-5 flex-1 flex flex-col justify-between gap-4">
+                <div>
+                  <div class="flex items-start justify-between gap-2">
+                    <div>
+                      <span class="text-xs font-extrabold uppercase tracking-wide text-toadstool">🌍 Länder-Postkarte</span>
+                      <h3 class="font-display text-2xl sm:text-3xl font-bold text-bark mt-1 flex items-center gap-2">
+                        <span>${level.country.flag}</span><span>${level.country.de}</span>
+                      </h3>
+                      <p class="text-sm font-bold text-barkSoft">Englisch: <span class="text-bark">${level.country.en}</span></p>
+                    </div>
+                    <!-- Cute Stamp -->
+                    <div class="w-16 h-16 rounded-2xl passport-stamp flex flex-col items-center justify-center rotate-6 flex-shrink-0">
+                      <span class="text-2xl">${level.country.flag}</span>
+                      <span class="text-[9px] font-extrabold text-mossDark uppercase">Lvl ${level.id}</span>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 p-3.5 rounded-2xl bg-sageLight/70 border border-sage/40 flex items-center justify-between gap-2">
+                    <div>
+                      <span class="text-[11px] font-extrabold uppercase text-mossDark block">Hauptstadt</span>
+                      <span class="font-display text-xl font-bold text-bark">🏛️ ${level.country.capital}</span>
+                    </div>
+                    <button onclick="speakEnglish('${level.country.en.replace(/'/g, "\\'")}')" class="btn-cozy px-3 py-1.5 rounded-full bg-white border border-sage text-xs font-extrabold text-mossDark flex items-center gap-1" title="Englischen Ländernamen anhören">
+                      <span>🔊</span><span>${level.country.en}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="bg-cream p-3.5 rounded-2xl border border-[#EAE0CE]">
+                  <span class="text-[11px] font-extrabold uppercase text-toadstoolDark block mb-1">⭐ Berühmt für …</span>
+                  <p class="text-sm font-semibold text-bark leading-relaxed">${level.country.fact}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. ENGLISH LEARNING CARD -->
+          <div class="card-botanical p-5 sm:p-6 bg-gradient-to-br from-[#FFFDF9] to-[#FDF7E8] border-honey/60">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b-2 border-[#EFE4CE]">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-xs font-extrabold uppercase tracking-wide text-[#9C670C]">📚 Englisch-Lernkarte</span>
+                  ${getCefrBadgeHTML(level.english.cefr)}
+                </div>
+                <div class="flex flex-wrap items-baseline gap-2.5">
+                  <h3 class="font-display text-2xl sm:text-3xl font-bold text-bark">${level.english.word}</h3>
+                  <span class="text-base sm:text-lg font-bold text-moss">= ${level.english.de}</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="speakEnglish('${level.english.word.replace(/'/g, "\\'")}')" class="btn-cozy btn-honey px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold flex items-center gap-1.5">
+                  <span>🔊</span><span>Wort anhören</span>
+                </button>
+                <button onclick="speakEnglish('${level.english.sentence.replace(/'/g, "\\'")}')" class="btn-cozy btn-parchment px-4 py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                  <span>🗣️</span><span>Satz anhören</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div class="bg-white p-4 rounded-2xl border border-[#EAE0CE]">
+                <span class="text-[11px] font-extrabold uppercase text-barkSoft block mb-1">Beispielsatz</span>
+                <p class="text-base font-bold text-bark leading-relaxed">„${highlightedSentence}“</p>
+              </div>
+              <div class="bg-sageLight/60 p-4 rounded-2xl border border-sage/40">
+                <span class="text-[11px] font-extrabold uppercase text-mossDark block mb-1">💡 Merkhilfe / Grammatik-Tipp</span>
+                <p class="text-sm font-bold text-bark leading-relaxed">${level.english.tip}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Start Quiz CTA -->
+          <div class="flex justify-center pt-1 pb-4">
+            <button onclick="beginLevelQuiz()" class="btn-cozy btn-toadstool px-8 py-3.5 rounded-full font-display font-bold text-lg sm:text-xl flex items-center gap-2.5">
+              <span>Quiz starten! (4 Fragen)</span><span>🍄</span>
+            </button>
+          </div>
+        `;
+
+        hydrateMushroomPhoto(
+          document.getElementById('discovery-mushroom-photo'),
+          level.mushroom.latin,
+          `${level.mushroom.de} (${level.mushroom.latin})`,
+          level.mushroom.category
+        );
+        return;
+      }
+
+      if (phase === 'quiz') {
+        const q = sess.questions[sess.qIndex];
+        const progressPct = ((sess.qIndex) / sess.questions.length) * 100;
+
+        container.innerHTML = `
+          <!-- Quiz Header -->
+          <div class="flex items-center justify-between gap-3">
+            <button onclick="activeLevelSession.phase='discovery'; renderLevelView();" class="btn-cozy btn-parchment px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold">
+              ← Zur Entdeckerkarte
+            </button>
+            <div class="flex-1 max-w-md mx-auto">
+              <div class="flex justify-between text-xs font-extrabold text-barkSoft mb-1">
+                <span>Level ${level.id} Quiz</span>
+                <span>Frage ${sess.qIndex + 1} von ${sess.questions.length}</span>
+              </div>
+              <div class="h-3 bg-parchment rounded-full overflow-hidden border border-[#DFD4BF]">
+                <div class="h-full bg-gradient-to-r from-moss to-sage rounded-full transition-all duration-300" style="width:${progressPct + 25}%"></div>
+              </div>
+            </div>
+            <span class="text-sm font-extrabold text-mossDark bg-sageLight px-3 py-1 rounded-full">⭐ ${sess.score}/4</span>
+          </div>
+
+          <!-- Quiz Card -->
+          <div class="card-botanical max-w-2xl mx-auto p-5 sm:p-7 space-y-5 animate-pop">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <span class="px-3 py-1 rounded-full bg-honeyLight text-[#8A5D0A] text-xs font-extrabold">${q.badge}</span>
+              ${q.audioText ? `
+                <button onclick="speakEnglish('${q.audioText.replace(/'/g, "\\'")}')" class="btn-cozy px-3.5 py-1.5 rounded-full bg-sageLight text-mossDark text-xs font-extrabold flex items-center gap-1.5">
+                  <span>🔊</span><span>Anhören</span>
+                </button>` : ''}
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div id="quiz-pip" class="flex-shrink-0 hidden sm:block">${getPipSVG('happy', 'w-16 h-16')}</div>
+              <div class="flex-1">
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-bark leading-snug">${q.prompt}</h3>
+                ${q.subHint ? `<p class="text-xs sm:text-sm font-bold text-barkSoft mt-1">${q.subHint}</p>` : ''}
+              </div>
+            </div>
+
+            ${q.sentenceBlank ? `
+              <div class="p-4 rounded-2xl bg-cream border-2 border-[#E5DAC6] text-center space-y-1.5">
+                <p class="font-display text-lg sm:text-xl font-bold text-bark">„${q.sentenceBlank.replace('_____', '<span class="inline-block px-3 py-0.5 mx-1 rounded-lg bg-honeyLight border-b-2 border-honey text-[#8A5D0A]">_____</span>')}“</p>
+                <p class="text-xs font-bold text-mossDark">${q.hintDe}</p>
+              </div>
+            ` : ''}
+
+            ${q.quote ? `
+              <div class="p-4 rounded-2xl bg-cream border-2 border-[#E5DAC6] italic font-bold text-bark text-sm sm:text-base">
+                „${q.quote}“
+              </div>
+            ` : ''}
+
+            ${q.type === 'mushroom' ? `
+              <div id="quiz-mushroom-photo" class="relative h-56 sm:h-64 w-full rounded-2xl overflow-hidden border-2 border-[#E5DAC6] bg-parchment"></div>
+            ` : ''}
+
+            <!-- Answer Options -->
+            <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              ${q.options.map((opt, idx) => `
+                <button onclick="submitQuizAnswer(${idx})" data-opt-idx="${idx}"
+                  class="quiz-opt-btn btn-cozy text-left p-4 rounded-2xl bg-white border-2 border-[#DFD4BF] hover:border-moss hover:bg-sageLight/30 font-bold text-sm sm:text-base text-bark flex items-center gap-3">
+                  <span class="w-7 h-7 flex-shrink-0 rounded-full bg-parchment text-barkSoft font-display text-xs flex items-center justify-center font-bold">${['A', 'B', 'C', 'D'][idx]}</span>
+                  <span class="flex-1">${opt}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Feedback Box -->
+            <div id="quiz-feedback" class="hidden rounded-2xl p-4 border-2 space-y-2 animate-pop"></div>
+          </div>
+        `;
+
+        if (q.type === 'mushroom') {
+          hydrateMushroomPhoto(
+            document.getElementById('quiz-mushroom-photo'),
+            q.latin,
+            'Pilz-Quiz Foto',
+            q.category
+          );
+        }
+        return;
+      }
+
+      if (phase === 'result') {
+        const stars = sess.score === 4 ? 3 : sess.score === 3 ? 2 : sess.score >= 1 ? 1 : 0;
+        const passed = stars >= 1;
+        const hasNext = level.id < 100;
+
+        container.innerHTML = `
+          <div class="card-botanical max-w-xl mx-auto p-6 sm:p-8 text-center space-y-5 animate-pop">
+            <div class="flex justify-center pip-float">${getPipSVG(passed ? 'cheer' : 'encourage', 'w-28 h-28')}</div>
+
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold ${passed ? 'bg-sageLight text-mossDark' : 'bg-[#FCE7E4] text-toadstoolDark'}">
+                Level ${level.id} ${passed ? 'abgeschlossen!' : 'noch nicht ganz geschafft'}
+              </span>
+              <h2 class="font-display text-3xl font-bold text-bark mt-2">
+                ${stars === 3 ? 'Fantastisch, Sporen-Profi!' : stars === 2 ? 'Super gemacht!' : stars === 1 ? 'Gut gerettet!' : 'Versuch es gleich nochmal!'}
+              </h2>
+              <p class="text-sm sm:text-base font-bold text-barkSoft mt-1">
+                Du hast <strong>${sess.score} von 4 Fragen</strong> richtig beantwortet.
+              </p>
+            </div>
+
+            <!-- Stars Row -->
+            <div class="text-4xl sm:text-5xl tracking-widest py-1">
+              ${getStarsHTML(stars)}
+            </div>
+
+            <!-- Collected Rewards -->
+            ${passed ? `
+              <div class="grid grid-cols-3 gap-2.5 text-left">
+                <div class="p-3 rounded-2xl bg-sageLight/60 border border-sage/40">
+                  <div class="text-lg">🍄</div>
+                  <div class="text-[10px] font-extrabold uppercase text-mossDark">Herbarium</div>
+                  <div class="text-xs font-bold text-bark truncate">${level.mushroom.de}</div>
+                </div>
+                <div class="p-3 rounded-2xl bg-honeyLight/70 border border-honey/40">
+                  <div class="text-lg">${level.country.flag}</div>
+                  <div class="text-[10px] font-extrabold uppercase text-[#8A5D0A]">Weltpass</div>
+                  <div class="text-xs font-bold text-bark truncate">${level.country.de}</div>
+                </div>
+                <div class="p-3 rounded-2xl bg-[#F2EAF8] border border-berry/30">
+                  <div class="text-lg">🇬🇧</div>
+                  <div class="text-[10px] font-extrabold uppercase text-berry">Vokabel</div>
+                  <div class="text-xs font-bold text-bark truncate">${level.english.word}</div>
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+              ${passed && hasNext ? `
+                <button onclick="startLevel(${level.id + 1})" class="btn-cozy btn-moss px-6 py-3 rounded-full font-display font-bold text-base flex items-center gap-2">
+                  <span>Nächstes Level (${level.id + 1})</span><span>➡️</span>
+                </button>
+              ` : ''}
+              <button onclick="startLevel(${level.id})" class="btn-cozy btn-honey px-5 py-3 rounded-full font-display font-bold text-sm sm:text-base flex items-center gap-1.5">
+                <span>🔄</span><span>Nochmal spielen</span>
+              </button>
+              <button onclick="switchTab('map')" class="btn-cozy btn-parchment px-5 py-3 rounded-full font-bold text-sm sm:text-base">
+                🗺️ Weltkarte
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function beginLevelQuiz() {
+      if (!activeLevelSession) return;
+      activeLevelSession.phase = 'quiz';
+      activeLevelSession.qIndex = 0;
+      activeLevelSession.score = 0;
+      activeLevelSession.answered = false;
+      renderLevelView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitQuizAnswer(optIdx) {
+      const sess = activeLevelSession;
+      if (!sess || sess.answered) return;
+      sess.answered = true;
+
+      const q = sess.questions[sess.qIndex];
+      const chosen = q.options[optIdx];
+      const isCorrect = chosen === q.correct;
+
+      if (isCorrect) {
+        sess.score++;
+        state.streak++;
+        if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+        state.xp += 15;
+        playChime('good');
+      } else {
+        state.streak = 0;
+        playChime('wrong');
+      }
+      saveState();
+      updateHeaderStats();
+
+      // Update Pip expression
+      const pipEl = document.getElementById('quiz-pip');
+      if (pipEl) pipEl.innerHTML = getPipSVG(isCorrect ? 'cheer' : 'encourage', 'w-16 h-16');
+
+      // Highlight options
+      document.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+        const idx = Number(btn.dataset.optIdx);
+        const val = q.options[idx];
+        btn.disabled = true;
+        if (val === q.correct) {
+          btn.className = 'quiz-opt-btn text-left p-4 rounded-2xl bg-[#E4F4E8] border-2 border-moss font-extrabold text-sm sm:text-base text-mossDark flex items-center gap-3';
+        } else if (idx === optIdx && !isCorrect) {
+          btn.className = 'quiz-opt-btn text-left p-4 rounded-2xl bg-[#FCE7E4] border-2 border-toadstool font-bold text-sm sm:text-base text-toadstoolDark flex items-center gap-3';
+        } else {
+          btn.className = 'quiz-opt-btn text-left p-4 rounded-2xl bg-cream border-2 border-[#EAE0CE] opacity-55 font-semibold text-sm sm:text-base text-barkSoft flex items-center gap-3';
+        }
+      });
+
+      // Show explanation & Next button
+      const fb = document.getElementById('quiz-feedback');
+      fb.classList.remove('hidden');
+      fb.className = isCorrect
+        ? 'rounded-2xl p-4 border-2 bg-[#EEF8F0] border-moss/40 space-y-3 animate-pop'
+        : 'rounded-2xl p-4 border-2 bg-[#FEF2EF] border-toadstool/40 space-y-3 animate-pop';
+
+      const isLast = sess.qIndex === sess.questions.length - 1;
+      fb.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <p class="font-display font-bold text-base ${isCorrect ? 'text-mossDark' : 'text-toadstoolDark'}">
+              ${isCorrect ? '🎉 Richtig geraten!' : `🌱 Fast! Richtig ist: „${q.correct}“`}
+            </p>
+            <p class="text-xs sm:text-sm font-semibold text-bark mt-1">${q.explanation}</p>
+          </div>
+          ${q.afterAudioText ? `
+            <button onclick="speakEnglish('${q.afterAudioText.replace(/'/g, "\\'")}')" class="btn-cozy flex-shrink-0 px-3 py-1.5 rounded-full bg-white border border-sage text-xs font-extrabold text-mossDark">
+              🔊 Anhören
+            </button>` : ''}
+        </div>
+        <div class="text-right">
+          <button onclick="nextQuizStep()" class="btn-cozy btn-moss px-5 py-2.5 rounded-full font-display font-bold text-sm sm:text-base">
+            ${isLast ? 'Ergebnis ansehen 🏆' : 'Nächste Frage ➡️'}
+          </button>
+        </div>
+      `;
+    }
+
+    function nextQuizStep() {
+      const sess = activeLevelSession;
+      if (!sess) return;
+
+      if (sess.qIndex < sess.questions.length - 1) {
+        sess.qIndex++;
+        sess.answered = false;
+        renderLevelView();
+      } else {
+        // Complete level
+        const stars = sess.score === 4 ? 3 : sess.score === 3 ? 2 : sess.score >= 1 ? 1 : 0;
+        if (stars >= 1) {
+          const prev = state.stars[sess.level.id] || 0;
+          state.stars[sess.level.id] = Math.max(prev, stars);
+          if (sess.level.id >= state.unlockedLevel && sess.level.id < 100) {
+            state.unlockedLevel = sess.level.id + 1;
+            state.activeChapter = LEVELS[state.unlockedLevel - 1].chapter;
+          }
+          saveState();
+          updateHeaderStats();
+          playChime('win');
+          triggerSporeConfetti();
+        }
+        sess.phase = 'result';
+        renderLevelView();
+      }
+    }
+
+    /* =========================================================================
+       10. TAB 2: PILZ-HERBARIUM (SEARCHABLE & FILTERABLE REAL PHOTO GALLERY)
+       ========================================================================= */
+    function setHerbariumFilter(cat) {
+      herbariumFilter = cat;
+      renderHerbarium();
+    }
+
+    function renderHerbarium() {
+      document.querySelectorAll('.hfilter-btn').forEach(btn => {
+        const active = btn.dataset.hfilter === herbariumFilter;
+        btn.className = active
+          ? 'hfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 bg-moss text-white border-mossDark'
+          : 'hfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 bg-cream text-bark border-[#DFD4BF] hover:border-sage';
+      });
+
+      const q = (document.getElementById('herbarium-search')?.value || '').trim().toLowerCase();
+      const visible = LEVELS.filter(l => isLevelDiscovered(l.id));
+      document.getElementById('herbarium-count').textContent = visible.length;
+
+      const filtered = visible.filter(l => {
+        if (herbariumFilter !== 'Alle' && l.mushroom.category !== herbariumFilter) return false;
+        if (!q) return true;
+        return l.mushroom.de.toLowerCase().includes(q)
+          || l.mushroom.en.toLowerCase().includes(q)
+          || l.mushroom.latin.toLowerCase().includes(q);
+      });
+
+      const grid = document.getElementById('herbarium-grid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full card-botanical p-8 text-center space-y-2">
+            <div class="text-4xl">🍄</div>
+            <p class="font-display text-lg font-bold text-bark">Keine Pilze für diesen Filter gefunden</p>
+            <p class="text-xs sm:text-sm text-barkSoft font-semibold">Spiele weitere Level frei oder aktiviere oben den 🔓 Entdecker-Modus, um alle 100 Pilze sofort anzusehen!</p>
+          </div>
+        `;
+        return;
+      }
+
+      setupLazyPhotoObserver();
+      grid.innerHTML = filtered.map(l => `
+        <article onclick="openMushroomModal(${l.id})" class="card-botanical overflow-hidden cursor-pointer hover:-translate-y-1 transition-transform flex flex-col">
+          <div class="lazy-mushroom-photo relative h-44 w-full bg-parchment overflow-hidden"
+               data-latin="${l.mushroom.latin}"
+               data-alt="${l.mushroom.de}"
+               data-cat="${l.mushroom.category}">
+            <div class="w-full h-full photo-skeleton flex items-center justify-center text-2xl">🍄</div>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+            <div>
+              <div class="flex items-center justify-between gap-1.5 mb-1">
+                <span class="text-[11px] font-extrabold text-barkSoft">Level ${l.id}</span>
+                ${getCategoryBadgeHTML(l.mushroom.category)}
+              </div>
+              <h3 class="font-display text-lg font-bold text-bark leading-tight">${l.mushroom.de}</h3>
+              <p class="text-xs font-bold text-mossDark">${l.mushroom.en}</p>
+              <p class="text-[11px] italic font-semibold text-barkSoft">${l.mushroom.latin}</p>
+            </div>
+            <p class="text-xs font-semibold text-barkSoft line-clamp-2">${l.mushroom.fact}</p>
+          </div>
+        </article>
+      `).join('');
+
+      document.querySelectorAll('.lazy-mushroom-photo').forEach(el => photoObserver.observe(el));
+    }
+
+    function openMushroomModal(levelId) {
+      const l = LEVELS.find(x => x.id === levelId);
+      if (!l) return;
+      const body = document.getElementById('modal-mushroom-body');
+      body.innerHTML = `
+        <div class="space-y-4">
+          <div id="modal-mushroom-photo" class="relative h-60 w-full rounded-2xl overflow-hidden bg-parchment border-2 border-[#E5DAC6]"></div>
+          <div>
+            <div class="flex items-center gap-2 mb-1.5">
+              ${getCategoryBadgeHTML(l.mushroom.category)}
+              <span class="text-xs font-extrabold text-barkSoft">Level ${l.id} · ${l.country.flag} ${l.country.de}</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-bark">${l.mushroom.de}</h3>
+            <div class="flex items-center gap-2 text-sm font-bold text-mossDark mt-0.5">
+              <span>🇬🇧 ${l.mushroom.en}</span>
+              <button onclick="speakEnglish('${l.mushroom.en.replace(/'/g, "\\'")}')" class="px-2.5 py-0.5 rounded-full bg-sageLight text-xs font-extrabold hover:bg-sage hover:text-white">🔊</button>
+            </div>
+            <p class="text-xs italic font-semibold text-barkSoft mt-0.5">Wissenschaftlich: ${l.mushroom.latin}</p>
+          </div>
+          <p class="text-sm font-semibold text-bark bg-cream p-3.5 rounded-2xl border border-[#EAE0CE] leading-relaxed">
+            ✨ ${l.mushroom.fact}
+          </p>
+          <div class="flex justify-end gap-2 pt-1">
+            <button onclick="closeMushroomModal(); startLevel(${l.id});" class="btn-cozy btn-moss px-5 py-2.5 rounded-full text-sm font-display font-bold">
+              Level ${l.id} spielen 🍄
+            </button>
+          </div>
+        </div>
+      `;
+      document.getElementById('modal-mushroom').classList.remove('hidden');
+      hydrateMushroomPhoto(document.getElementById('modal-mushroom-photo'), l.mushroom.latin, l.mushroom.de, l.mushroom.category);
+    }
+
+    function closeMushroomModal() {
+      document.getElementById('modal-mushroom').classList.add('hidden');
+    }
+
+    /* =========================================================================
+       11. TAB 3: WELTPASS (COLLECTIBLE PASSPORT STAMPS)
+       ========================================================================= */
+    function initPassportFilterOptions() {
+      const sel = document.getElementById('passport-chapter-filter');
+      CHAPTERS.forEach(ch => {
+        const opt = document.createElement('option');
+        opt.value = String(ch.id);
+        opt.textContent = `${ch.icon} Kap. ${ch.id}: ${ch.title}`;
+        sel.appendChild(opt);
+      });
+    }
+
+    function renderPassport() {
+      const q = (document.getElementById('passport-search')?.value || '').trim().toLowerCase();
+      const chVal = document.getElementById('passport-chapter-filter')?.value || 'all';
+
+      const visible = LEVELS.filter(l => isLevelDiscovered(l.id));
+      document.getElementById('passport-count').textContent = visible.length;
+
+      const filtered = visible.filter(l => {
+        if (chVal !== 'all' && String(l.chapter) !== chVal) return false;
+        if (!q) return true;
+        return l.country.de.toLowerCase().includes(q)
+          || l.country.en.toLowerCase().includes(q)
+          || l.country.capital.toLowerCase().includes(q);
+      });
+
+      const grid = document.getElementById('passport-grid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full card-botanical p-8 text-center space-y-2">
+            <div class="text-4xl">🌍</div>
+            <p class="font-display text-lg font-bold text-bark">Keine Länder-Stempel gefunden</p>
+            <p class="text-xs sm:text-sm text-barkSoft font-semibold">Schließe mehr Level ab oder schalte den 🔓 Entdecker-Modus ein, um alle 100 Länder zu sehen.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(l => {
+        const stamped = Boolean(state.stars[l.id]);
+        return `
+          <div class="card-botanical p-4 sm:p-5 passport-stamp flex flex-col justify-between gap-3 relative">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="text-3xl">${l.country.flag}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold text-bark leading-tight">${l.country.de}</h3>
+                  <p class="text-xs font-bold text-barkSoft">🇬🇧 ${l.country.en}</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full ${
+                stamped ? 'bg-sageLight text-mossDark' : 'bg-parchment text-barkSoft'
+              }">${stamped ? '✓ Gestempelt' : `Lvl ${l.id}`}</span>
+            </div>
+
+            <div class="bg-cream px-3 py-2 rounded-xl border border-[#EAE0CE] flex items-center justify-between">
+              <span class="text-xs font-bold text-barkSoft">🏛️ Hauptstadt:</span>
+              <span class="font-display font-bold text-sm text-mossDark">${l.country.capital}</span>
+            </div>
+
+            <p class="text-xs font-semibold text-bark leading-relaxed">${l.country.fact}</p>
+
+            <div class="flex items-center justify-between pt-1 border-t border-[#EFE6D5]">
+              <button onclick="speakEnglish('${l.country.en.replace(/'/g, "\\'")}')" class="text-xs font-extrabold text-mossDark hover:underline">🔊 ${l.country.en}</button>
+              <button onclick="startLevel(${l.id})" class="text-xs font-extrabold text-toadstool hover:underline">Level ${l.id} öffnen →</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* =========================================================================
+       12. TAB 4: ENGLISCH-VOKABELBUCH & ENDLOS-MIX TRAINING
+       ========================================================================= */
+    function setVocabFilter(cefr) {
+      vocabFilter = cefr;
+      renderVocab();
+    }
+
+    function renderVocab() {
+      document.querySelectorAll('.vfilter-btn').forEach(btn => {
+        const active = btn.dataset.vfilter === vocabFilter;
+        btn.className = active
+          ? 'vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 bg-moss text-white border-mossDark'
+          : 'vfilter-btn px-3.5 py-1.5 rounded-full text-xs font-extrabold border-2 bg-cream text-bark border-[#DFD4BF] hover:border-sage';
+      });
+
+      const q = (document.getElementById('vocab-search')?.value || '').trim().toLowerCase();
+      const visible = LEVELS.filter(l => isLevelDiscovered(l.id));
+      document.getElementById('vocab-count').textContent = visible.length;
+
+      const filtered = visible.filter(l => {
+        if (vocabFilter !== 'Alle' && l.english.cefr !== vocabFilter) return false;
+        if (!q) return true;
+        return l.english.word.toLowerCase().includes(q)
+          || l.english.de.toLowerCase().includes(q)
+          || l.english.sentence.toLowerCase().includes(q);
+      });
+
+      const list = document.getElementById('vocab-list');
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="col-span-full card-botanical p-8 text-center space-y-2">
+            <div class="text-4xl">📚</div>
+            <p class="font-display text-lg font-bold text-bark">Keine Vokabeln für diesen Filter sichtbar</p>
+            <p class="text-xs sm:text-sm text-barkSoft font-semibold">Spiele weitere Level oder schalte den 🔓 Entdecker-Modus ein.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = filtered.map(l => `
+        <div class="card-botanical p-4 space-y-2.5 flex flex-col justify-between">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                ${getCefrBadgeHTML(l.english.cefr)}
+                <span class="text-[11px] font-bold text-barkSoft">Level ${l.id} · ${l.country.flag}</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-bark">${l.english.word}</h3>
+              <p class="text-sm font-extrabold text-moss">${l.english.de}</p>
+            </div>
+            <button onclick="speakEnglish('${l.english.word.replace(/'/g, "\\'")}')" class="btn-cozy w-10 h-10 rounded-full bg-honeyLight border border-honey/60 flex items-center justify-center text-base flex-shrink-0" title="Englisch anhören">
+              🔊
+            </button>
+          </div>
+
+          <div class="bg-cream p-3 rounded-xl border border-[#EAE0CE] space-y-1">
+            <div class="flex items-start justify-between gap-2">
+              <p class="text-xs sm:text-sm font-bold text-bark">„${l.english.sentence}“</p>
+              <button onclick="speakEnglish('${l.english.sentence.replace(/'/g, "\\'")}')" class="text-xs font-bold text-mossDark flex-shrink-0" title="Satz anhören">🗣️</button>
+            </div>
+            <p class="text-xs font-semibold text-barkSoft">💡 ${l.english.tip}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ---- ENDLOS-MIX TRAINER (English, Capitals & Mushrooms) ----
+    function openTrainerModal() {
+      trainerState = { score: 0, streak: 0, currentQ: null, answered: false };
+      document.getElementById('modal-trainer').classList.remove('hidden');
+      loadNextTrainerQuestion();
+    }
+
+    function closeTrainerModal() {
+      document.getElementById('modal-trainer').classList.add('hidden');
+    }
+
+    function loadNextTrainerQuestion() {
+      let pool = LEVELS.filter(l => isLevelDiscovered(l.id));
+      if (pool.length < 4) pool = LEVELS.slice(0, 10); // Always enough variety even at Level 1
+
+      const target = pool[Math.floor(Math.random() * pool.length)];
+      const mode = Math.floor(Math.random() * 3); // 0=Vocab, 1=Capital, 2=Mushroom EN/DE
+      let q;
+
+      if (mode === 0) {
+        q = {
+          tag: `🇬🇧 Englisch (${target.english.cefr})`,
+          prompt: `Was bedeutet „${target.english.word}“?`,
+          audio: target.english.word,
+          options: shuffleArray([target.english.de, ...pickDistractors(target, 3, l => l.english.de, false)]),
+          correct: target.english.de,
+          info: `Satz: „${target.english.sentence}“`
+        };
+      } else if (mode === 1) {
+        q = {
+          tag: '🌍 Hauptstädte-Mix',
+          prompt: `Wie heißt die Hauptstadt von ${target.country.flag} ${target.country.de}?`,
+          audio: null,
+          options: shuffleArray([target.country.capital, ...pickDistractors(target, 3, l => l.country.capital, false)]),
+          correct: target.country.capital,
+          info: `${target.country.de} (${target.country.en}): ${target.country.fact}`
+        };
+      } else {
+        q = {
+          tag: '🍄 Pilz-Wissen',
+          prompt: `Welcher Pilz heißt auf Englisch „${target.mushroom.en}“?`,
+          audio: target.mushroom.en,
+          latin: target.mushroom.latin,
+          category: target.mushroom.category,
+          options: shuffleArray([target.mushroom.de, ...pickDistractors(target, 3, l => l.mushroom.de, false)]),
+          correct: target.mushroom.de,
+          info: `${target.mushroom.de} (${target.mushroom.latin}) – ${target.mushroom.category}`
+        };
+      }
+
+      trainerState.currentQ = q;
+      trainerState.answered = false;
+      renderTrainerBody();
+    }
+
+    function renderTrainerBody() {
+      const q = trainerState.currentQ;
+      const body = document.getElementById('modal-trainer-body');
+      body.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between pr-8">
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-bark">⚡ Endlos-Mix Training</h3>
+            <div class="flex items-center gap-2 text-xs font-extrabold">
+              <span class="px-2.5 py-1 rounded-full bg-sageLight text-mossDark">⭐ ${trainerState.score}</span>
+              <span class="px-2.5 py-1 rounded-full bg-honeyLight text-[#8A5D0A]">🔥 ${trainerState.streak}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-parchment text-bark text-xs font-extrabold">${q.tag}</span>
+            ${q.audio ? `<button onclick="speakEnglish('${q.audio.replace(/'/g, "\\'")}')" class="btn-cozy px-3 py-1 rounded-full bg-honeyLight text-[#7A5207] text-xs font-extrabold">🔊 Anhören</button>` : ''}
+          </div>
+
+          <p class="font-display text-xl font-bold text-bark">${q.prompt}</p>
+
+          ${q.latin ? `<div id="trainer-photo" class="relative h-44 w-full rounded-2xl overflow-hidden bg-parchment border-2 border-[#E5DAC6]"></div>` : ''}
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            ${q.options.map((opt, idx) => `
+              <button onclick="answerTrainer(${idx})" data-tidx="${idx}" class="trainer-opt btn-cozy text-left p-3.5 rounded-2xl bg-white border-2 border-[#DFD4BF] hover:border-moss font-bold text-sm text-bark">
+                ${opt}
+              </button>
+            `).join('')}
+          </div>
+
+          <div id="trainer-fb" class="hidden p-3.5 rounded-2xl border-2 space-y-2"></div>
+        </div>
+      `;
+
+      if (q.latin) {
+        hydrateMushroomPhoto(document.getElementById('trainer-photo'), q.latin, 'Pilz-Training', q.category);
+      }
+    }
+
+    function answerTrainer(idx) {
+      if (trainerState.answered) return;
+      trainerState.answered = true;
+      const q = trainerState.currentQ;
+      const ok = q.options[idx] === q.correct;
+
+      if (ok) {
+        trainerState.score++;
+        trainerState.streak++;
+        playChime('good');
+      } else {
+        trainerState.streak = 0;
+        playChime('wrong');
+      }
+
+      document.querySelectorAll('.trainer-opt').forEach(btn => {
+        const i = Number(btn.dataset.tidx);
+        btn.disabled = true;
+        if (q.options[i] === q.correct) {
+          btn.className = 'trainer-opt text-left p-3.5 rounded-2xl bg-[#E4F4E8] border-2 border-moss font-extrabold text-sm text-mossDark';
+        } else if (i === idx && !ok) {
+          btn.className = 'trainer-opt text-left p-3.5 rounded-2xl bg-[#FCE7E4] border-2 border-toadstool font-bold text-sm text-toadstoolDark';
+        } else {
+          btn.className = 'trainer-opt text-left p-3.5 rounded-2xl bg-cream border-2 border-[#EAE0CE] opacity-55 text-sm text-barkSoft';
+        }
+      });
+
+      const fb = document.getElementById('trainer-fb');
+      fb.classList.remove('hidden');
+      fb.className = ok
+        ? 'p-3.5 rounded-2xl border-2 bg-[#EEF8F0] border-moss/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2'
+        : 'p-3.5 rounded-2xl border-2 bg-[#FEF2EF] border-toadstool/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2';
+      fb.innerHTML = `
+        <div class="text-xs sm:text-sm font-semibold text-bark">
+          <strong class="${ok ? 'text-mossDark' : 'text-toadstoolDark'}">${ok ? '🎉 Richtig!' : `Richtig wäre: ${q.correct}`}</strong><br/>
+          ${q.info}
+        </div>
+        <button onclick="loadNextTrainerQuestion()" class="btn-cozy btn-moss px-4 py-2 rounded-full text-xs sm:text-sm font-display font-bold flex-shrink-0">
+          Weiter ➡️
+        </button>
+      `;
+    }
+
+    /* =========================================================================
+       13. SETTINGS MODAL & SAFE PROGRESS RESET (NO confirm()/alert())
+       ========================================================================= */
+    function openSettingsModal() {
+      updateHeaderStats();
+      document.getElementById('reset-confirm-area').innerHTML = `
+        <button onclick="showResetConfirm()" class="btn-cozy px-4 py-2 rounded-full bg-white border-2 border-toadstool text-toadstoolDark text-xs font-extrabold hover:bg-toadstool hover:text-white">
+          Fortschritt zurücksetzen
+        </button>
+      `;
+      document.getElementById('modal-settings').classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('modal-settings').classList.add('hidden');
+    }
+
+    function showResetConfirm() {
+      document.getElementById('reset-confirm-area').innerHTML = `
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-extrabold text-toadstoolDark">Wirklich alles auf Level 1 zurücksetzen?</span>
+          <button onclick="executeProgressReset()" class="btn-cozy px-3.5 py-1.5 rounded-full bg-toadstool text-white text-xs font-extrabold">Ja, zurücksetzen</button>
+          <button onclick="openSettingsModal()" class="btn-cozy px-3.5 py-1.5 rounded-full bg-white border border-[#DFD4BF] text-xs font-bold text-bark">Abbrechen</button>
+        </div>
+      `;
+    }
+
+    function executeProgressReset() {
+      state = { ...DEFAULT_STATE };
+      saveState();
+      updateHeaderStats();
+      closeSettingsModal();
+      switchTab('map');
+      showToast('🌱 Dein Fortschritt wurde auf Level 1 zurückgesetzt.');
+    }
+
+    /* =========================================================================
+       14. FLOATING SPORE BACKGROUND & APP INITIALIZATION
+       ========================================================================= */
+    function initFloatingSpores() {
+      const bg = document.getElementById('spore-bg');
+      const count = 18;
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'spore-particle';
+        const size = 8 + Math.random() * 14;
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+        dot.style.left = `${Math.random() * 100}%`;
+        dot.style.animationDuration = `${12 + Math.random() * 16}s`;
+        dot.style.animationDelay = `${-Math.random() * 18}s`;
+        bg.appendChild(dot);
+      }
+    }
+
+    // Boot Application on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      initFloatingSpores();
+      initPassportFilterOptions();
+      updateHeaderStats();
+      switchTab('map');
+    });
+  </script>
+</body>
+</html>
